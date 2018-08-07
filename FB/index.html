@@ -12,10 +12,14 @@
 
 <body>
 	<header>
-		<table class = "header"><tr><td><img src = "icons/icon-72.png" alt="Icon" height="36" width="36"></td>
-			<td>
-			Fussball Saison 18/19<br>Ergebnisse und Tabellen
-	 		</td></tr></table>
+		<table class = "header">
+			<tr>
+				<td><img src = "icons/icon-72.png" alt="Icon" height="36" width="36"></td>
+				<td>Fussball Saison 18/19<br>Ergebnisse und Tabellen</td>
+				<td><img id = "refreshButton" src = "icons/refresh-72.png" alt="refresh" height="36" width="36"></td>
+
+	 		</tr>
+	 	</table>
 	</header>
 	<nav>
 		<table class = "navTable">
@@ -33,7 +37,6 @@
 			<td><button class = "cupButtons" id = "cl1718" name = "pokal" value = "0">CL</button></td>
 			<td><button class = "cupButtons" id = "el1718" name = "pokal" value = "1">EL</button></td>
 			<td><button class = "cupButtons" id = "dfbp" name = "pokal" value = "2">DFB</button></td>
-			<td><button class = "cupButtons" id = "wm2018ru" name = "pokal" value = "3">WM</button></td>
 		</tr>
 	</table>
 	<table class = "navTable">
@@ -50,7 +53,7 @@
 	  </tr>
 	  </table>
 	</nav>
-	
+	<div id = "onlinestatus"></div>
 
 	<main>
 		<table class = "resultsTable">

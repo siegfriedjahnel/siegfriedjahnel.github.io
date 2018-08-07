@@ -1,3 +1,13 @@
+
+var offlineText = "Achtung! Sie sind offline. Die Daten können veraltet sein!";
+window.addEventListener("load", function(e) {
+  if(!navigator.onLine) onlinestatus.innerHTML = offlineText;
+});
+window.addEventListener("offline", function(e) { onlinestatus.innerHTML = offlineText; });
+
+window.addEventListener("online", function(e) { onlinestatus.innerHTML = ""; });
+
+
 const ligaCompetitions = [
   {"name":"BL1", "id":"023UT1TN0000001IVS54898DVVG1IBJM-G"},
   {"name":"BL2", "id":"023UT27QC400001KVS54898DVVG1IBJM-G"},
@@ -8,10 +18,9 @@ const ligaCompetitions = [
 ];
 
 const cupCompetitions = [
-  {"name":"CL", "id":"cl1718", "season":"2017"},
-  {"name":"EL", "id":"el1718", "season":"2017"},
-  {"name":"DFB", "id":"dfb2018", "season":"2018"},
-  {"name":"EL", "id":"wm2018ru", "season":"2018"}
+  {"name":"CL", "id":"cl1819", "season":"2018"},
+  {"name":"EL", "id":"el1819", "season":"2018"},
+  {"name":"DFB", "id":"dfb2018", "season":"2018"}
 ];
 var season = "2018";
 
@@ -27,8 +36,10 @@ const resultsTableBody = document.getElementById( 'resultsTableBody');
 const tableTableBody = document.getElementById( 'tableTableBody');
 const minusButton = document.getElementById('minusButton');
 const plusButton = document. getElementById('plusButton');
+const onlinestatus = document.getElementById('onlinestatus');
 const ligaButtons = document.getElementsByClassName('ligaButtons');
 const cupButtons = document.getElementsByClassName('cupButtons');
+const refreshButton = document.getElementById('refreshButton');
 
 for (var i = 0; i < ligaButtons.length; i++) {
     ligaButtons[i].addEventListener('click', function(){
@@ -50,17 +61,19 @@ for (var i = 0; i < cupButtons.length; i++) {
 
     });
 }
+
 minusButton.addEventListener('click', function(){
   selMatchday--;
   getMatchData(competitionId, selMatchday, type);
-  
 });
 
 plusButton.addEventListener('click', function(){
   selMatchday++;
   getMatchData(competitionId, selMatchday, type);
-  
+});
 
+refreshButton.addEventListener('click', function(){
+  getMatchData(competitionId, selMatchday, type);
 });
 
 //----------------------------------------------------------
@@ -83,7 +96,8 @@ function getMatchData(competitionId , matchday, type){
       	var route = cupUrl + "/" + competitionId + "/" + season + "/" +matchday; 
         }
       }
-    
+    resultsTableBody.innerHTML = "loading!";
+    tableTableBody.innerHTML = "";
     fetch(route)
     .then(function(response) {
     if (response.ok)

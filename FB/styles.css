@@ -12,8 +12,11 @@ main {
   
 }
 button{
-	background-color: #ffe6cc;
-	border-radius: 4px;
+	background-color: #ffffff;
+	border: 1px;
+	border-radius: 8px;
+	border-style: solid;
+	border-color: #000000;
 	height: 3em;
 
 }
@@ -48,7 +51,10 @@ table{
 		width: 3.0em;
 	}
 
-
+#onlinestatus{
+	color: red;
+	text-align: center;
+}
 td, th {
   border: 1px solid #999;
   padding: 0.5rem;
