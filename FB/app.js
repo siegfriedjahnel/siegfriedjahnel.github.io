@@ -162,7 +162,7 @@ function drawCupResults(match){
 	if(match.MatchResults.length == 0){
 		var res = "";
 	}else{
-		var res = match.MatchResults[0].PointsTeam1 + ":" + match.MatchResults[0].PointsTeam2;
+		var res = match.MatchResults[1].PointsTeam1 + ":" + match.MatchResults[1].PointsTeam2;
 	}
 	var date = new Date(match.MatchDateTime);
 	var day = ("0"+date.getDate()).slice(-2);
