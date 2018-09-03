@@ -18,9 +18,9 @@ const ligaCompetitions = [
 ];
 
 const cupCompetitions = [
-  {"name":"CL", "id":"cl1819", "season":"2018"},
-  {"name":"EL", "id":"el1819", "season":"2018"},
-  {"name":"DFB", "id":"DFB18", "season":"2018"}
+  {"name":"CL", "id":"cl2018", "season":"2018"},
+  {"name":"EL", "id":"el18", "season":"2018"},
+  {"name":"DFB", "id":"dfb2018", "season":"2018"}
 ];
 var season = "2018";
 
@@ -159,10 +159,11 @@ function drawLigaTable(match){
 }
 
 function drawCupResults(match){
-	if(match.MatchResults.length == 0){
-		var res = "";
-	}else{
-		var res = match.MatchResults[0].PointsTeam1 + ":" + match.MatchResults[0].PointsTeam2;
+	var res = "";
+	for(var i=0; i < match.MatchResults.length; i++){
+		if(match.MatchResults[i].ResultName == "Endergebnis"){
+			var res = match.MatchResults[i].PointsTeam1 + ":" + match.MatchResults[i].PointsTeam2;
+		}
 	}
 	var date = new Date(match.MatchDateTime);
 	var day = ("0"+date.getDate()).slice(-2);
