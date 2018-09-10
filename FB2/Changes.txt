@@ -1,0 +1,4 @@
+Change log
+31.7.2018 
+	--> app.js: Zeile 85 "loading!" integriert
+	--> app.js: Zeile 14 name: "WM" vorher name: "EL"
