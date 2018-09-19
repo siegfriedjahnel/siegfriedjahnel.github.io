@@ -1,0 +1,23 @@
+table {
+	font-family: monospace;
+	font-size: 12pt;
+	width: 95%;
+	list-style-type: none;
+
+}
+tr{
+	background: #bbccdd;
+	border-style: stroke;
+	margin: 5px;
+	padding: 5px;
+}
+.c1{
+	width: 50%;
+}
+tr.today{
+	background: lime;
+	
+}
+.selected{
+	background: lime;
+}
