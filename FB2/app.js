@@ -62,10 +62,26 @@ for (var i = 0; i < cupButtons.length; i++) {
     });
 }
 
-minusButton.addEventListener('click', function(){
+
+
+$(document).on("pagecreate","#page1",function() {
+  $("#maincontent").on("swipeleft", increaseMatchday);
+  $("#maincontent").on("swiperight",decreaseMatchday);
+  });
+
+        
+function decreaseMatchday(){
   selMatchday--;
   getMatchData(competitionId, selMatchday, type);
-});
+}
+
+function increaseMatchday(){
+  selMatchday++;
+  getMatchData(competitionId, selMatchday, type);
+}
+
+minusButton.addEventListener('click', decreaseMatchday);
+
 
 plusButton.addEventListener('click', function(){
   selMatchday++;

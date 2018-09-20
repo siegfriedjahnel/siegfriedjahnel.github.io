@@ -7,11 +7,23 @@
 
   	<link rel="stylesheet" href="styles.css">
   	<link rel="manifest" href="manifest.json">
+
+  	<link rel="stylesheet" href="/jquery/jquery.mobile-1.4.5.min.css">
+  	<script src="/jquery/jquery-3.3.1.min.js"></script>
+  	<script src="/jquery/jquery.mobile-1.5.0.min.js"></script>
+  	
+
 	<meta name="theme-color" content="#ffffff" />
 </head>
+<script type="text/javascript">
+		
 
+  		
+  	</script>
 <body>
-	<header>
+	<div data-role = "page" id = "page1">
+	<div data-role = "header">
+		
 		<table class = "header">
 			<tr>
 				<td><img src = "icons/icon-72.png" alt="Icon" height="36" width="36"></td>
@@ -20,7 +32,9 @@
 
 	 		</tr>
 	 	</table>
-	</header>
+	 
+	</div><!-- End of Header -->
+	
 	<nav>
 		<table class = "navTable">
 	  <tr class = "liga">
@@ -55,8 +69,9 @@
 	</nav>
 	<div id = "onlinestatus"></div>
 
-	<main>
-		<table class = "resultsTable">
+	<div data-role = "content" id = "maincontent">
+		
+		<table class = "resultsTable"  >
 			<tbody id = "resultsTableBody">
 			<tbody>
 		</table>
@@ -68,21 +83,14 @@
 			<tbody>
 			
 		</table>
-	</main>
-	<footer>
-	<table><tr><td>PWA Fussball :: Siegfried Jahnel :: http://sj-sam.de</td></tr></table>
-	</footer>
-
-
-
-
-
-
-<script type="text/javascript" src="app.js" ></script>
 	
+	</div><!-- End of content -->
 
+	<div data-role = "footer">
+	<table><tr><td>PWA Fussball :: Siegfried Jahnel :: http://sj-sam.de</td></tr></table>
+	</div><!-- End of footer -->
 
-
-
+</div><!-- End of page -->
 </body>
+<script type="text/javascript" src="app.js" ></script>
 </html>
