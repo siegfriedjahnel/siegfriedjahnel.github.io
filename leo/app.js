@@ -26,7 +26,7 @@ function dayAsString(unixDay){
 	return dayString;
 }
 //------
-fetch(apiUrl, {mode:'no-cors'})
+fetch(apiUrl)
 .then(function(response) {
 	return response.json();
 })
