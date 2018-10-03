@@ -1,0 +1,62 @@
+body {
+	font-family: monospace;
+    background-color: darkred;
+}
+div.headline{
+	
+	padding: 2px;
+	background-color: orangered;
+	
+}
+
+
+div.footer{
+	padding: 5px;
+	background-color: orangered;
+	
+}
+h3 {
+    
+    text-align: center;
+}
+table {
+	padding: 10px;
+	
+	font-size: 12pt;
+	width: 100%;
+	
+
+}
+td{
+	padding: 5px;
+}
+.c1{
+	width: 50%;
+}
+tr.today{
+	background: lime;
+	
+}
+tr{
+	background-color: orange;
+}
+.popup {
+    display: inline-block;
+}
+.popup .popuptext {
+    visibility: hidden;
+    width: 260px;
+    background-color: #b1b1b1;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 20px;
+    position:relative;
+    top:50px;
+    right:15px;
+}
+.popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+}

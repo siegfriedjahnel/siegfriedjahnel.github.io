@@ -1,4 +1,8 @@
+
+
+
 table {
+	padding: 10px;
 	font-family: monospace;
 	font-size: 12pt;
 	width: 95%;
@@ -6,10 +10,9 @@ table {
 
 }
 tr{
-	background: #bbccdd;
-	border-style: stroke;
-	margin: 5px;
-	padding: 5px;
+	background: #bb0000;
+	
+	
 }
 .c1{
 	width: 50%;
@@ -17,7 +20,4 @@ tr{
 tr.today{
 	background: lime;
 	
-}
-.selected{
-	background: lime;
 }
