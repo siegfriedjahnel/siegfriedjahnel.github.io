@@ -18,8 +18,8 @@ const ligaCompetitions = [
 ];
 
 const cupCompetitions = [
-  {"name":"CL", "id":"cl2018", "season":"2018"},
-  {"name":"EL", "id":"el18", "season":"2018"},
+  {"name":"CL", "id":"cl1819", "season":"2018"},
+  {"name":"EL", "id":"el1819", "season":"2018"},
   {"name":"DFB", "id":"dfb2018", "season":"2018"}
 ];
 var season = "2018";
