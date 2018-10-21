@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+
+	<script type="text/javascript">
+		var competitionId = 5;
+		var	url1 = "https://liveticker.stroeerdp.de/rest/getdata?id=1&competitionId=" + competitionId +"&seasonId=2018";
+		var url2 = "https://liveticker.stroeerdp.de/rest/soccer/teams/competition/"+ competitionId;
+		var teamNames;
+		fetch(url2)
+		.then(function(response) {
+			return response.json();
+		})
+		.then(function(myJson) {
+			teamNames = myJson;
+		})
+
+
+
+		fetch(url1)
+		.then(function(response) {
+			return response.json();
+		})
+		.then(function(myJson) {
+			for(var i = 0; i< myJson.data.SoccerFeed.MatchData.length; i++){
+				var teamId1 = myJson.data.SoccerFeed.MatchData[i].TeamData[0].TeamRef;
+				var teamId2 = myJson.data.SoccerFeed.MatchData[i].TeamData[1].TeamRef;
+				var scoreTeam1 = myJson.data.SoccerFeed.MatchData[i].TeamData[0].Score;
+				var scoreTeam2 = myJson.data.SoccerFeed.MatchData[i].TeamData[1].Score;
+				var nameTeam1 = teamNames.teams[teamId1].Name;
+				var nameTeam2 = teamNames.teams[teamId2].Name;
+				var matchDate = myJson.data.SoccerFeed.MatchData[i].MatchInfo.Date;
+				var matchDay = myJson.data.SoccerFeed.MatchData[i].MatchInfo.MatchDay;
+				console.log(matchDay + "-" +  matchDate + ":" + nameTeam1 + " - " + nameTeam2 + " -- " + scoreTeam1 + ":" + scoreTeam2);
+			}
+
+		});
+
+	</script>
+</body>
+</html>

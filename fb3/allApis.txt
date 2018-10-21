@@ -1,0 +1,21 @@
+//--al APIs
+
+competitionId:
+ - CL = 5
+ - EL = 6
+ - DFB = 231
+
+
+https://www.t-online.de/wiga/api/livematches/desktop/ -- Live aktuelles Spiel
+
+https://dts.stroeerdp.de/rest/getdata/?id=8&competitionId=5&seasonId=2018 -- aktueller CL Spieltag
+
+https://liveticker.stroeerdp.de/rest/getdata?id=1&competitionId=5&seasonId=2018 -- alle CL Spiele
+
+https://liveticker.stroeerdp.de/rest/soccer/teams/competition/5 -- Teams de CL
+
+https://liveticker.stroeerdp.de/rest/soccer/teams/competition/231 -- Teams DFB Pokal
+
+https://liveticker.stroeerdp.de/rest/soccer/teams/competition/6 -- Teams EL
+
+https://liveticker.stroeerdp.de/rest/soccer/teams/competition/941 -- Teams Nations League
