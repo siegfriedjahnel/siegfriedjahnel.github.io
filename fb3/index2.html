@@ -4,10 +4,14 @@
 	<title></title>
 </head>
 <body>
+	<table id ="outputTable" border = 1>
 
+	</table>
 
 	<script type="text/javascript">
-		var competitionId = 5;
+		var outputTable = document.getElementById("outputTable");
+		var competitionId = 5;//CL
+		var selMatchDay = 2;
 		var	url1 = "https://liveticker.stroeerdp.de/rest/getdata?id=1&competitionId=" + competitionId +"&seasonId=2018";
 		var url2 = "https://liveticker.stroeerdp.de/rest/soccer/teams/competition/"+ competitionId;
 		var teamNames;
@@ -31,11 +35,38 @@
 				var teamId2 = myJson.data.SoccerFeed.MatchData[i].TeamData[1].TeamRef;
 				var scoreTeam1 = myJson.data.SoccerFeed.MatchData[i].TeamData[0].Score;
 				var scoreTeam2 = myJson.data.SoccerFeed.MatchData[i].TeamData[1].Score;
+				if(scoreTeam1!= undefined){
+					var result = scoreTeam1 + ":" + scoreTeam2;	
+				}else{
+					var result = "-:-";
+				}
 				var nameTeam1 = teamNames.teams[teamId1].Name;
 				var nameTeam2 = teamNames.teams[teamId2].Name;
+				var teams = nameTeam1 + " <br> " + nameTeam2;
 				var matchDate = myJson.data.SoccerFeed.MatchData[i].MatchInfo.Date;
+
+				var year = matchDate.substring(2, 4);
+				var month = matchDate.substring(5, 7);
+				var day = matchDate.substring(8, 10);
+				var time = matchDate.substring(11, 16);
+				var date = day + "."+ month + "." + year + "<br>" + time;
 				var matchDay = myJson.data.SoccerFeed.MatchData[i].MatchInfo.MatchDay;
-				console.log(matchDay + "-" +  matchDate + ":" + nameTeam1 + " - " + nameTeam2 + " -- " + scoreTeam1 + ":" + scoreTeam2);
+				var group = myJson.data.SoccerFeed.MatchData[i].MatchInfo.GroupName;
+
+				if(matchDay == selMatchDay){
+					var row = document.createElement("tr");
+					//row.innerHTML = "<td>" + date + "</td><td>" + teams + "</td><td>" + result +"</td>";
+					row.innerHTML = `
+					<td>${date}</td>
+					<td>${group}</td>
+					<td>${teams}</td>
+					<td>${result}</td>
+					`;
+					outputTable.appendChild(row);
+				}
+
+
+				console.log(matchDay + "-" +  group + matchDate +":" + nameTeam1 + " - " + nameTeam2 + " -- " + scoreTeam1 + ":" + scoreTeam2);
 			}
 
 		});
