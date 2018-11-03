@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+   <head>
+      <title>index3</title>
+      <meta name = "viewport" content = "width = device-width, initial-scale = 1">
+      <link rel = "stylesheet" href = "https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+
+      <script src = "https://code.jquery.com/jquery-1.11.3.min.js"></script>
+      <script src = "https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+      
+      <script>
+         $(document).on("pagecreate","#page1",function() {
+            alert("created");
+            $("p").on("swiperight",function() {
+               console.log("swiped!!")
+               //$("span").text("swipe event occurred!!!");
+            });
+         });
+      </script>
+   </head>
+   
+   <body>
+      <div data-role = "page" id = "page1">
+            <p>It will display the text when you swipe right side.</p>
+            <span style = "color:orange"></span>
+           
+      </div>
+   </body>
+</html>
