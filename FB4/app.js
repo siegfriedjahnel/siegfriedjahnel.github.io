@@ -184,17 +184,22 @@ function drawCupResults(match){
   var nameTeam1 = teamNames.teams[teamId1].Name;
   var nameTeam2 = teamNames.teams[teamId2].Name;
   if(scoreTeam1){
-          var result = scoreTeam1 + ":" + scoreTeam2; 
-        }else{
-          var result = "-:-";
-        }
+    var result = scoreTeam1 + ":" + scoreTeam2; 
+    }else{
+    var result = "-:-";
+   }
+
+  try{
   	var matchDate = match.MatchInfo.Date;
-  var year = matchDate.substring(2, 4);
-  var month = matchDate.substring(5, 7);
-  var day = matchDate.substring(8, 10);
-  var time = matchDate.substring(11, 16);
-  var date = day + "."+ month + "." + year + "<br>" + time;
-  var matchDay = match.MatchInfo.MatchDay;
+  	var year = matchDate.substring(2, 4);
+  	var month = matchDate.substring(5, 7);
+  	var day = matchDate.substring(8, 10);
+  	var time = matchDate.substring(11, 16);
+  	var date = day + "."+ month + "." + year + "<br>" + time;
+  	var matchDay = match.MatchInfo.MatchDay;
+  } catch(e) {
+  	var date = "----";
+  }
   
   if(match.MatchInfo.GroupName){
     var group = match.MatchInfo.GroupName;
