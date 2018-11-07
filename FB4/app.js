@@ -183,6 +183,7 @@ function drawCupResults(match){
   var scoreTeam2 = match.TeamData[1].Score;
   var nameTeam1 = teamNames.teams[teamId1].Name;
   var nameTeam2 = teamNames.teams[teamId2].Name;
+  try{var matchDay = match.MatchInfo.MatchDay}catch(){var matchDay = ""}
   if(scoreTeam1){
     var result = scoreTeam1 + ":" + scoreTeam2; 
     }else{
@@ -196,8 +197,7 @@ function drawCupResults(match){
   	var day = matchDate.substring(8, 10);
   	var time = matchDate.substring(11, 16);
   	var date = day + "."+ month + "." + year + "<br>" + time;
-  	var matchDay = match.MatchInfo.MatchDay;
-  } catch(e) {
+  	} catch(e) {
   	var date = "----";
   }
   
