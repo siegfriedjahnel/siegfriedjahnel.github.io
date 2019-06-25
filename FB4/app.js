@@ -137,6 +137,7 @@ function getMatchData(competitionId, seasonId , matchday, type){
     	tableTableHead.innerHTML = `<th>&nbsp;</th><th>Verein</th><th>Sp</th><th>Pu</th><th>TV</th>` ;
     	tableTableBody.innerHTML = json.data.tabelle.map(drawLigaTable).join('\n');
 
+	    
     } 
     if(type == "cup"){
       var actualMatchDay = "";
@@ -183,7 +184,11 @@ function drawCupResults(match){
   var scoreTeam2 = match.TeamData[1].Score;
   var nameTeam1 = teamNames.teams[teamId1].Name;
   var nameTeam2 = teamNames.teams[teamId2].Name;
-  try{var matchDay = match.MatchInfo.MatchDay}catch(){var matchDay = ""}
+  try{
+	  var matchDay = match.MatchInfo.MatchDay
+	  }catch(e){
+		var matchDay = ""
+	  }
   if(scoreTeam1){
     var result = scoreTeam1 + ":" + scoreTeam2; 
     }else{
