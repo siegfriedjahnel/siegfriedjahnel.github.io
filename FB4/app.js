@@ -9,12 +9,12 @@ window.addEventListener("online", function(e) { onlinestatus.innerHTML = ""; });
 
 
 const ligaCompetitions = [
-  {"name":"BL1", "competitionId":"023UT1TN0000001IVS54898DVVG1IBJM-G", "seasonId":"2018"},
-  {"name":"BL2", "competitionId":"023UT27QC400001KVS54898DVVG1IBJM-G", "seasonId":"2018"},
-  {"name":"BL3", "competitionId":"023V9I211C00000NVS54898DVVG1IBJM-G", "seasonId":"2018"},
-  {"name":"RLB", "competitionId":"023KPUIJ90000002VS54898EVV49UB8O-G", "seasonId":"2018"},
+  {"name":"BL1", "competitionId":"027GJLHJB0000000VS5489B3VVQN7UE9-G", "seasonId":"2019"},
+  {"name":"BL2", "competitionId":"027GJLMCFS00001GVS5489B3VVQN7UE9-G", "seasonId":"2019"},
+  {"name":"BL3", "competitionId":"027GJMDRE4000005VS5489B3VVQN7UE9-G", "seasonId":"2019"},
+  {"name":"RLB", "competitionId":"027D48LQHK000009VS5489B3VUOI54T7-G", "seasonId":"2019"},
   {"name":"LLSO", "competitionId":"0279RO38MO000001VS5489B3VUOI54T7-G", "seasonId":"2019"},
-  {"name":"KLIS", "competitionId":"023NDK2ECS00000AVS54898EVV49UB8O-G", "seasonId":"2018"}
+  {"name":"KLIS", "competitionId":"027EC4JLNO00000CVS5489B4VTN21JC6-G", "seasonId":"2019"}
 ];
 
 const cupCompetitions = [
