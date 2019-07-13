@@ -13,7 +13,7 @@ const ligaCompetitions = [
   {"name":"BL2", "competitionId":"023UT27QC400001KVS54898DVVG1IBJM-G", "seasonId":"2018"},
   {"name":"BL3", "competitionId":"023V9I211C00000NVS54898DVVG1IBJM-G", "seasonId":"2018"},
   {"name":"RLB", "competitionId":"023KPUIJ90000002VS54898EVV49UB8O-G", "seasonId":"2018"},
-  {"name":"LLSO", "competitionId":"023DI4HOUG000000VS54898EVTNSI1CG-G", "seasonId":"2018"},
+  {"name":"LLSO", "competitionId":"0279RO38MO000001VS5489B3VUOI54T7-G", "seasonId":"2019"},
   {"name":"KLIS", "competitionId":"023NDK2ECS00000AVS54898EVV49UB8O-G", "seasonId":"2018"}
 ];
 
