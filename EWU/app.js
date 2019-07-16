@@ -23,6 +23,9 @@ const statustext = document.getElementById("statustext");
 const footline = document.getElementById("footline");
 const leftImageholder = document.getElementById("leftImageholder");
 const backButton = document.createElement('img');
+const back2Aktuell = `<button class='backButton' onclick=aktuell()><b> << </b></button>`;
+//const back2Zeitplan = `<button class='backButton' onclick=zeitplan(${turnierNr})><img src='icons//back-24-trans-black.png'></botton>`;
+const loaderGif = "<img src='icons/ajax-loader.gif'>";
 backButton.src = 'icons/back-24-trans-black.png';
 const authKey = "Uar4nTRTqLip22l33u1wsvOqJw2LTfwe1q2ua88le1q2ua88l";
 const apiProxy = "https://sj-sam.de/apps/ewu-app/proxy.php";
@@ -31,7 +34,7 @@ const apiProxy = "https://sj-sam.de/apps/ewu-app/proxy.php";
 //--------------------------------------------------------------------
 function aktuell() {
     listView.innerHTML = "";
-    statustext.innerHTML = "loading";
+    statustext.innerHTML = loaderGif;
     leftImageholder.innerHTML = "";
     var uri = apiProxy + "?a=Turniere/Aktuell";
     fetch(uri)
@@ -57,7 +60,7 @@ function aktuell() {
                 var listItem = document.createElement('li');
                 listItem.innerHTML = `
         <b>${name}</b><br>
-        ${anfang}, ${ort}, Nennschluss: ${nennschluss}<br>
+        <b>${anfang}</b><br>${ort}, Nennschluss: ${nennschluss}<br>
         <button class="linkButton" onclick=zeitplan(${turnierNr})>Zeitplan</botton>
          `;
                 listView.appendChild(listItem);
@@ -72,7 +75,7 @@ function aktuell() {
 
 function zeitplan(turnierNr) {//----------------------------------------------------
     listView.innerHTML = "";
-    statustext.innerHTML = "loading";
+    statustext.innerHTML = loaderGif;
     var uri = apiProxy + "?a=Turniere/Zeitplan/" + turnierNr;
     fetch(uri)
         .then(function (response) {
@@ -80,9 +83,8 @@ function zeitplan(turnierNr) {//------------------------------------------------
         })
         .then(function (myJson) {
             statustext.innerHTML = `${myJson.tunierbezeichnung}`;
+            leftImageholder.innerHTML = back2Aktuell;
 
-            leftImageholder.appendChild(backButton);
-            leftImageholder.addEventListener('click', aktuell);
             var pruefungen = myJson.zeitplan;
             pruefungen.forEach(pruefung => {
                 var pruefungsNr = pruefung.id;
@@ -112,7 +114,7 @@ function zeitplan(turnierNr) {//------------------------------------------------
 
 function startliste(turnierNr, pruefungsNr) {
     listView.innerHTML = "";
-    statustext.innerHTML = "loading";
+    statustext.innerHTML = loaderGif;
     var uri = apiProxy + "?a=Turniere/Startliste/" + pruefungsNr;
     fetch(uri)
         .then(function (response) {
@@ -120,11 +122,8 @@ function startliste(turnierNr, pruefungsNr) {
         })
         .then(function (myJson) {
             statustext.innerHTML = `${myJson.pruefungKurz}`;
-            leftImageholder.appendChild(backButton);
-            leftImageholder.removeEventListener('click', aktuell);
-            leftImageholder.addEventListener('click', function () {
-                zeitplan(turnierNr);
-            });
+            leftImageholder.innerHTML = `<button class='backButton' onclick=zeitplan(${turnierNr})><b> << </b></button>`;
+            
             var reiters = myJson.reiterList;
             reiters.forEach(reiter => {
                 var position = reiter.position;
@@ -144,7 +143,7 @@ function startliste(turnierNr, pruefungsNr) {
 
 function ergebnis(turnierNr, pruefungsNr) {
     listView.innerHTML = "";
-    statustext.innerHTML = "loading";
+    statustext.innerHTML = loaderGif;
     var uri = apiProxy + "?a=Turniere/Ergebnis/" + pruefungsNr;
     fetch(uri)
         .then(function (response) {
@@ -152,11 +151,7 @@ function ergebnis(turnierNr, pruefungsNr) {
         })
         .then(function (myJson) {
             statustext.innerHTML = `${myJson.pruefungKurz}`;
-            leftImageholder.appendChild(backButton);
-            leftImageholder.removeEventListener('click', aktuell);
-            leftImageholder.addEventListener('click', function () {
-                zeitplan(turnierNr);
-            });
+            leftImageholder.innerHTML = `<button class='backButton' onclick=zeitplan(${turnierNr})><b> << </b></button>`;
             var reiters = myJson.reiterList;
             var richter = myJson.richter;
             var listHead = document.createElement('li');
@@ -183,7 +178,7 @@ function ergebnis(turnierNr, pruefungsNr) {
 
 function pattern(turnierNr, pruefungsNr) {
     listView.innerHTML = "";
-    statustext.innerHTML = "loading";
+    statustext.innerHTML = loaderGif;
     var uri = apiProxy + "?a=Turniere/Pattern/" + pruefungsNr;
    
     fetch(uri)
@@ -192,17 +187,14 @@ function pattern(turnierNr, pruefungsNr) {
         })
         .then(function (myJson) {
             statustext.innerHTML = "Pattern";
-            leftImageholder.appendChild(backButton);
-            leftImageholder.removeEventListener('click', aktuell);
-            leftImageholder.addEventListener('click', function () {
-                zeitplan(turnierNr);
-            });
+            leftImageholder.innerHTML = `<button class='backButton' onclick=zeitplan(${turnierNr})><b> << </b></button>`;
+            
             pdfHolder.innerHTML="";
             
             var b64 = myJson.patternPdf;
             var obj = document.createElement('object');
             obj.style.width = '100%';
-            obj.style.height = '842pt';
+            obj.style.height = '1pt';
             obj.data = '';//empty it
             obj.type = 'application/pdf';
             obj.data = 'data:application/pdf;base64,' + b64;
