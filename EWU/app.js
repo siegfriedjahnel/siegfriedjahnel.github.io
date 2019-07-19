@@ -62,6 +62,8 @@ function aktuell() {
         <b>${name}</b><br>
         <b>${anfang}</b><br>${ort}, Nennschluss: ${nennschluss}<br>
         <button class="linkButton" onclick=zeitplan(${turnierNr})>Zeitplan</botton>
+        <button class="linkButton" onclick=news(${turnierNr})>News</botton>
+        <button class="linkButton" onclick=kontakt(${turnierNr})>Kontakt</botton>
          `;
                 listView.appendChild(listItem);
 
@@ -144,7 +146,9 @@ function startliste(turnierNr, pruefungsNr) {
 function ergebnis(turnierNr, pruefungsNr) {
     listView.innerHTML = "";
     statustext.innerHTML = loaderGif;
-    var uri = apiProxy + "?a=Turniere/Ergebnis/" + pruefungsNr;
+    var richterNr = 1;
+    
+    var uri = apiProxy + "?a=Turniere/Ergebnis/" + pruefungsNr + "/" +richterNr;
     fetch(uri)
         .then(function (response) {
             return response.json();
@@ -204,5 +208,58 @@ function pattern(turnierNr, pruefungsNr) {
         })
         .catch(function (e) {
             listView.innerHTML = "kein Pdf vorhanden";
+        });
+}//---------------------------------------------------------------------------------------------
+
+function news(turnierNr) {
+    listView.innerHTML = "";
+    statustext.innerHTML = loaderGif;
+    var uri = apiProxy + "?a=Turniere/News/" + turnierNr;
+    fetch(uri)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (myJson) {
+            statustext.innerHTML = "News";
+            leftImageholder.innerHTML = `<button class='backButton' onclick=aktuell()><b> << </b></button>`;
+            var newsList = myJson.newsList;
+            newsList.forEach(news => {
+                var plainText = news.plainText;
+                var datum = new Date(news.timestamp);
+                datum = datum.toLocaleDateString('de-DE', options);
+                var listItem = document.createElement('li');
+                listItem.innerHTML = `${datum} |  ${plainText}`;
+                listView.appendChild(listItem);
+            });
+        })
+        .catch(function (e) {
+            listView.innerHTML = "keine daten vorhanden";
+        });
+}//---------------------------------------------------------------------------------------------
+
+function kontakt(turnierNr) {
+    listView.innerHTML = "";
+    statustext.innerHTML = loaderGif;
+    var uri = apiProxy + "?a=Turniere/Kontakt/" + turnierNr;
+    fetch(uri)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (myJson) {
+            statustext.innerHTML = "Kontakte";
+            leftImageholder.innerHTML = `<button class='backButton' onclick=aktuell()><b> << </b></button>`;
+            var contactList = myJson.contactList;
+            contactList.forEach(contact => {
+                var name = contact.name;
+                var funktion = contact.function;
+                var mobile = contact.mobile;
+                
+                var listItem = document.createElement('li');
+                listItem.innerHTML = `${name} |  ${funktion} | ${mobile}`;
+                listView.appendChild(listItem);
+            });
+        })
+        .catch(function (e) {
+            listView.innerHTML = "keine daten vorhanden";
         });
 }//---------------------------------------------------------------------------------------------

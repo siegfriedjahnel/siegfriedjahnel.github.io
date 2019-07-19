@@ -1,7 +1,7 @@
 {
-    "name": "Fussballergebnisse - Deutsche Ligen",
-    "short_name": "Fussballergebnisse",
-    "description": "Ergenisse und Tabellen ",
+    "name": "EWU-Web-App",
+    "short_name": "EWU-Web-App",
+    "description": "Turniere, Startlisten, Ergebnisse und mehr.. ",
     "icons": [
         {
             "src": "icons/icon-72-1.png",
