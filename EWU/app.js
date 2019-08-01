@@ -1,7 +1,7 @@
 
 window.addEventListener('load', function () {
     window.history.pushState({}, '')
-    aktuell();
+    aktuell(0);
 })
 
 window.addEventListener('popstate', function () {
@@ -16,26 +16,28 @@ if ('serviceWorker' in navigator) {
 }
 
 //----------------------------------------------------------
+var parentId = 0;
+var back2Aktuell = "";
 const options = { weekday: 'short', year: 'numeric', month: 'numeric', day: 'numeric' };
 const pdfHolder = document.getElementById("pdfHolder");
 const listView = document.getElementById("listView");
 const statustext = document.getElementById("statustext");
 const footline = document.getElementById("footline");
 const leftImageholder = document.getElementById("leftImageholder");
-const backButton = document.createElement('img');
-const back2Aktuell = `<button class='backButton' onclick=aktuell()><b> << </b></button>`;
+
 //const back2Zeitplan = `<button class='backButton' onclick=zeitplan(${turnierNr})><img src='icons//back-24-trans-black.png'></botton>`;
 const loaderGif = "<img src='icons/ajax-loader.gif'>";
-backButton.src = 'icons/back-24-trans-black.png';
+
 const authKey = "Uar4nTRTqLip22l33u1wsvOqJw2LTfwe1q2ua88le1q2ua88l";
 const apiProxy = "https://sj-sam.de/apps/ewu-app/proxy.php";
-
 //----------------------------------start ---------------------------
 //--------------------------------------------------------------------
-function aktuell() {
+function aktuell(turnierNr) {
+   
     listView.innerHTML = "";
     statustext.innerHTML = loaderGif;
     leftImageholder.innerHTML = "";
+   
     var uri = apiProxy + "?a=Turniere/Aktuell";
     fetch(uri)
         .then(function (response) {
@@ -58,35 +60,40 @@ function aktuell() {
                 var anfang = turnierbeginn.toLocaleDateString('de-DE', options);
                 var nennschluss = nennschluss.toLocaleDateString('de-DE', options);
                 var listItem = document.createElement('li');
+                listItem.setAttribute("id", turnierNr);
                 listItem.innerHTML = `
         <b>${name}</b><br>
         <b>${anfang}</b><br>${ort}, Nennschluss: ${nennschluss}<br>
-        <button class="linkButton" onclick=zeitplan(${turnierNr})>Zeitplan</botton>
-        <button class="linkButton" onclick=news(${turnierNr})>News</botton>
-        <button class="linkButton" onclick=kontakt(${turnierNr})>Kontakt</botton>
+        <button class="linkButton" onclick="zeitplan(${turnierNr},0)">Zeitplan</botton>
+        <button class="linkButton" onclick="news(${turnierNr}, 0)">News</botton>
+        <button class="linkButton" onclick="kontakt(${turnierNr}, 0)">Kontakt</botton>
          `;
                 listView.appendChild(listItem);
 
             });
+            if(turnierNr != 0){
+                document.getElementById(turnierNr).scrollIntoView();
+            }
         })
         .catch(function (e) {
 
             listView.innerHTML = "keine daten vorhanden";
+            statustext.innerHTML = "";
         });
 }//------------------------------------------------------------------------------
 
-function zeitplan(turnierNr) {//----------------------------------------------------
+function zeitplan(turnierNr, pruefungsNr) {//----------------------------------------------------
     listView.innerHTML = "";
     statustext.innerHTML = loaderGif;
     var uri = apiProxy + "?a=Turniere/Zeitplan/" + turnierNr;
+  
     fetch(uri)
         .then(function (response) {
             return response.json();
         })
         .then(function (myJson) {
             statustext.innerHTML = `${myJson.tunierbezeichnung}`;
-            leftImageholder.innerHTML = back2Aktuell;
-
+            
             var pruefungen = myJson.zeitplan;
             pruefungen.forEach(pruefung => {
                 var pruefungsNr = pruefung.id;
@@ -98,34 +105,41 @@ function zeitplan(turnierNr) {//------------------------------------------------
                 var wochenTag = tagDatum.substring(0, 2);
                 var anzahlNennungen = pruefung.anzahlNennungen;
                 var listItem = document.createElement('li');
+                listItem.setAttribute("id", pruefungsNr);
                 listItem.innerHTML = `
         <b>${wochenTag}, ${startZeit} ${eintrag}</b><br>
         ${reitplatz},  Nennungen: ${anzahlNennungen}<br>
-        <button class="linkButton" onclick=startliste(${turnierNr},${pruefungsNr})>Startliste</botton>
-        <button class="linkButton" onclick=pattern(${turnierNr},${pruefungsNr})>Pattern</botton>
-        <button class="linkButton" onclick=ergebnis(${turnierNr},${pruefungsNr})>Ergebnis</botton>
+        <button class="linkButton" onclick="startliste(${pruefungsNr},${turnierNr})">Startliste</botton>
+        <button class="linkButton" onclick="pattern(${pruefungsNr},${turnierNr})">Pattern</botton>
+        <button class="linkButton" onclick="ergebnis(${pruefungsNr},${turnierNr})">Ergebnis</botton>
         `;
                 listView.appendChild(listItem);
             });
+            if(pruefungsNr != 0){
+                document.getElementById(pruefungsNr).scrollIntoView();
+            }
+
         })
         .catch(function (e) {
             listView.innerHTML = "keine daten vorhanden";
+            statustext.innerHTML = "";
         });
+        leftImageholder.innerHTML = `<button class='backButton' onclick="aktuell(${turnierNr})"><b> << </b></button>`;
 }//---------------------------------------------------------------------------------------------
 
 
-function startliste(turnierNr, pruefungsNr) {
+function startliste(pruefungsNr, turnierNr) {
     listView.innerHTML = "";
     statustext.innerHTML = loaderGif;
     var uri = apiProxy + "?a=Turniere/Startliste/" + pruefungsNr;
+    
     fetch(uri)
         .then(function (response) {
             return response.json();
         })
         .then(function (myJson) {
             statustext.innerHTML = `${myJson.pruefungKurz}`;
-            leftImageholder.innerHTML = `<button class='backButton' onclick=zeitplan(${turnierNr})><b> << </b></button>`;
-            
+                        
             var reiters = myJson.reiterList;
             reiters.forEach(reiter => {
                 var position = reiter.position;
@@ -139,11 +153,13 @@ function startliste(turnierNr, pruefungsNr) {
             });
         })
         .catch(function (e) {
-            listView.innerHTML = "keine daten vorhanden";
+            statustext.innerHTML = "";
+            listView.innerHTML = "keine Startliste vorhanden";
         });
+        leftImageholder.innerHTML = `<button class='backButton' onclick="zeitplan(${turnierNr},${pruefungsNr})"><b> << </b></button>`;
 }//---------------------------------------------------------------------------------------------
 
-function ergebnis(turnierNr, pruefungsNr) {
+function ergebnis(pruefungsNr, turnierNr) {
     listView.innerHTML = "";
     statustext.innerHTML = loaderGif;
     var richterNr = 1;
@@ -155,7 +171,7 @@ function ergebnis(turnierNr, pruefungsNr) {
         })
         .then(function (myJson) {
             statustext.innerHTML = `${myJson.pruefungKurz}`;
-            leftImageholder.innerHTML = `<button class='backButton' onclick=zeitplan(${turnierNr})><b> << </b></button>`;
+           
             var reiters = myJson.reiterList;
             var richter = myJson.richter;
             var listHead = document.createElement('li');
@@ -177,10 +193,12 @@ function ergebnis(turnierNr, pruefungsNr) {
         })
         .catch(function (e) {
             listView.innerHTML = "keine daten vorhanden";
+            statustext.innerHTML = "";
         });
+        leftImageholder.innerHTML = `<button class='backButton' onclick="zeitplan(${turnierNr}, ${pruefungsNr})"><b> << </b></button>`;
 }//---------------------------------------------------------------------------------------------
 
-function pattern(turnierNr, pruefungsNr) {
+function pattern(pruefungsNr, turnierNr) {
     listView.innerHTML = "";
     statustext.innerHTML = loaderGif;
     var uri = apiProxy + "?a=Turniere/Pattern/" + pruefungsNr;
@@ -191,27 +209,31 @@ function pattern(turnierNr, pruefungsNr) {
         })
         .then(function (myJson) {
             statustext.innerHTML = "Pattern";
-            leftImageholder.innerHTML = `<button class='backButton' onclick=zeitplan(${turnierNr})><b> << </b></button>`;
-            
-            pdfHolder.innerHTML="";
-            
+           
             var b64 = myJson.patternPdf;
-            var obj = document.createElement('object');
+            
+            pdfHolder.innerHTML=`<object data="data:application/pdf;base64, ${b64}" type="application/pdf">
+            <iframe src="https://docs.google.com/viewer?&embedded=true"></iframe>
+            </object>`;
+            
+            /* var obj = document.createElement('object');
             obj.style.width = '100%';
-            obj.style.height = '1pt';
+            obj.style.height = '100pt';
             obj.data = '';//empty it
             obj.type = 'application/pdf';
             obj.data = 'data:application/pdf;base64,' + b64;
-            pdfHolder.appendChild(obj);
+            pdfHolder.appendChild(obj); */
 
             
         })
         .catch(function (e) {
             listView.innerHTML = "kein Pdf vorhanden";
+            statustext.innerHTML = "";
         });
+        leftImageholder.innerHTML = `<button class='backButton' onclick="zeitplan(${turnierNr},${pruefungsNr})"><b> << </b></button>`;
 }//---------------------------------------------------------------------------------------------
 
-function news(turnierNr) {
+function news(turnierNr,dir) {
     listView.innerHTML = "";
     statustext.innerHTML = loaderGif;
     var uri = apiProxy + "?a=Turniere/News/" + turnierNr;
@@ -221,7 +243,6 @@ function news(turnierNr) {
         })
         .then(function (myJson) {
             statustext.innerHTML = "News";
-            leftImageholder.innerHTML = `<button class='backButton' onclick=aktuell()><b> << </b></button>`;
             var newsList = myJson.newsList;
             newsList.forEach(news => {
                 var plainText = news.plainText;
@@ -234,10 +255,12 @@ function news(turnierNr) {
         })
         .catch(function (e) {
             listView.innerHTML = "keine daten vorhanden";
+            statustext.innerHTML = "";
         });
+        leftImageholder.innerHTML = `<button class='backButton' onclick="aktuell(${turnierNr},'back')"><b> << </b></button>`;
 }//---------------------------------------------------------------------------------------------
 
-function kontakt(turnierNr) {
+function kontakt(turnierNr, dir) {
     listView.innerHTML = "";
     statustext.innerHTML = loaderGif;
     var uri = apiProxy + "?a=Turniere/Kontakt/" + turnierNr;
@@ -247,7 +270,6 @@ function kontakt(turnierNr) {
         })
         .then(function (myJson) {
             statustext.innerHTML = "Kontakte";
-            leftImageholder.innerHTML = `<button class='backButton' onclick=aktuell()><b> << </b></button>`;
             var contactList = myJson.contactList;
             contactList.forEach(contact => {
                 var name = contact.name;
@@ -261,5 +283,7 @@ function kontakt(turnierNr) {
         })
         .catch(function (e) {
             listView.innerHTML = "keine daten vorhanden";
+            statustext.innerHTML = "";
         });
+        leftImageholder.innerHTML = `<button class='backButton' onclick="aktuell(${turnierNr},'back')"><b> << </b></button>`;
 }//---------------------------------------------------------------------------------------------
