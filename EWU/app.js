@@ -213,7 +213,7 @@ function pattern(pruefungsNr, turnierNr) {
             var b64 = myJson.patternPdf;
             
             pdfHolder.innerHTML=`<object data="data:application/pdf;base64, ${b64}" type="application/pdf">
-            <iframe src="https://docs.google.com/viewer?&embedded=true"></iframe>
+            <iframe src="https://docs.google.com/viewer?embedded=true"></iframe>
             </object>`;
             
             /* var obj = document.createElement('object');
