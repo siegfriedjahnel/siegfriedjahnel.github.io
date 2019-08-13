@@ -19,7 +19,7 @@ if ('serviceWorker' in navigator) {
 var parentId = 0;
 var back2Aktuell = "";
 const options = { weekday: 'short', year: 'numeric', month: 'numeric', day: 'numeric' };
-const pdfHolder = document.getElementById("pdfHolder");
+const patternHolder = document.getElementById("patternHolder");
 const listView = document.getElementById("listView");
 const statustext = document.getElementById("statustext");
 const footline = document.getElementById("footline");
@@ -29,7 +29,7 @@ const leftImageholder = document.getElementById("leftImageholder");
 const loaderGif = "<img src='icons/ajax-loader.gif'>";
 
 const authKey = "Uar4nTRTqLip22l33u1wsvOqJw2LTfwe1q2ua88le1q2ua88l";
-const apiProxy = "https://sj-sam.de/apps/ewu-app/proxy.php";
+const apiProxy = "https://sj-sam.de/apps/ewu-app/proxy2.php";
 //----------------------------------start ---------------------------
 //--------------------------------------------------------------------
 function aktuell(turnierNr) {
@@ -108,7 +108,7 @@ function zeitplan(turnierNr, pruefungsNr) {//-----------------------------------
                 listItem.setAttribute("id", pruefungsNr);
                 listItem.innerHTML = `
         <b>${wochenTag}, ${startZeit} ${eintrag}</b><br>
-        ${reitplatz},  Nennungen: ${anzahlNennungen}<br>
+        <b>${reitplatz}</b>,  Nennungen: ${anzahlNennungen}<br>
         <button class="linkButton" onclick="startliste(${pruefungsNr},${turnierNr})">Startliste</botton>
         <button class="linkButton" onclick="pattern(${pruefungsNr},${turnierNr})">Pattern</botton>
         <button class="linkButton" onclick="ergebnis(${pruefungsNr},${turnierNr})">Ergebnis</botton>
@@ -210,19 +210,11 @@ function pattern(pruefungsNr, turnierNr) {
         .then(function (myJson) {
             statustext.innerHTML = "Pattern";
            
-            var b64 = myJson.patternPdf;
+            var i64 = myJson.patternImage;
             
-            pdfHolder.innerHTML=`<object data="data:application/pdf;base64, ${b64}" type="application/pdf">
-            <iframe src="https://docs.google.com/viewer?embedded=true"></iframe>
-            </object>`;
+            patternHolder.innerHTML=`<img src="data:image/jpg;base64, ${i64}" width=100%>`;
             
-            /* var obj = document.createElement('object');
-            obj.style.width = '100%';
-            obj.style.height = '100pt';
-            obj.data = '';//empty it
-            obj.type = 'application/pdf';
-            obj.data = 'data:application/pdf;base64,' + b64;
-            pdfHolder.appendChild(obj); */
+            
 
             
         })
