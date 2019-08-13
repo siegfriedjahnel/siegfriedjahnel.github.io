@@ -35,6 +35,7 @@ const apiProxy = "https://sj-sam.de/apps/ewu-app/proxy2.php";
 function aktuell(turnierNr) {
    
     listView.innerHTML = "";
+    patternHolder.innerHTML="";
     statustext.innerHTML = loaderGif;
     leftImageholder.innerHTML = "";
    
@@ -84,6 +85,7 @@ function aktuell(turnierNr) {
 
 function zeitplan(turnierNr, pruefungsNr) {//----------------------------------------------------
     listView.innerHTML = "";
+    patternHolder.innerHTML="";
     statustext.innerHTML = loaderGif;
     var uri = apiProxy + "?a=Turniere/Zeitplan/" + turnierNr;
   
@@ -130,6 +132,7 @@ function zeitplan(turnierNr, pruefungsNr) {//-----------------------------------
 
 function startliste(pruefungsNr, turnierNr) {
     listView.innerHTML = "";
+    patternHolder.innerHTML="";
     statustext.innerHTML = loaderGif;
     var uri = apiProxy + "?a=Turniere/Startliste/" + pruefungsNr;
     
@@ -161,6 +164,7 @@ function startliste(pruefungsNr, turnierNr) {
 
 function ergebnis(pruefungsNr, turnierNr) {
     listView.innerHTML = "";
+    patternHolder.innerHTML="";
     statustext.innerHTML = loaderGif;
     var richterNr = 1;
     
@@ -200,6 +204,7 @@ function ergebnis(pruefungsNr, turnierNr) {
 
 function pattern(pruefungsNr, turnierNr) {
     listView.innerHTML = "";
+    patternHolder.innerHTML="";
     statustext.innerHTML = loaderGif;
     var uri = apiProxy + "?a=Turniere/Pattern/" + pruefungsNr;
    
@@ -223,6 +228,7 @@ function pattern(pruefungsNr, turnierNr) {
 
 function news(turnierNr,dir) {
     listView.innerHTML = "";
+    patternHolder.innerHTML="";
     statustext.innerHTML = loaderGif;
     var uri = apiProxy + "?a=Turniere/News/" + turnierNr;
     fetch(uri)
@@ -250,6 +256,7 @@ function news(turnierNr,dir) {
 
 function kontakt(turnierNr, dir) {
     listView.innerHTML = "";
+    patternHolder.innerHTML="";
     statustext.innerHTML = loaderGif;
     var uri = apiProxy + "?a=Turniere/Kontakt/" + turnierNr;
     fetch(uri)
