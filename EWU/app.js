@@ -209,17 +209,13 @@ function pattern(pruefungsNr, turnierNr) {
         })
         .then(function (myJson) {
             statustext.innerHTML = "Pattern";
-           
             var i64 = myJson.patternImage;
-            
             patternHolder.innerHTML=`<img src="data:image/jpg;base64, ${i64}" width=100%>`;
-            
-            
-
             
         })
         .catch(function (e) {
-            listView.innerHTML = "kein Pdf vorhanden";
+            patternHolder.innerHTML="";
+            listView.innerHTML = "keine Pattern vorhanden";
             statustext.innerHTML = "";
         });
         leftImageholder.innerHTML = `<button class='backButton' onclick="zeitplan(${turnierNr},${pruefungsNr})"><b> << </b></button>`;
