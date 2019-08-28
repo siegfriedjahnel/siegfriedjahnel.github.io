@@ -1,0 +1,29 @@
+body {
+    background-color: skyblue;
+    color: black;
+    font-family: sans-serif;
+    padding: 0pt;
+  }
+  .textline{
+      margin:4pt;
+      padding:4pt;
+      font-weight: 125%;
+  }
+  
+  .content{
+      margin-top: 50pt;
+  }
+  .navbar{
+    
+      display: flex;
+      justify-content : space-between;
+      background-color: lightblue;
+      margin: 0pt;
+      padding:4pt;
+  }
+  .navbarmiddle{
+      font-size: 125%;
+      font-weight: 125%;
+      margin-top: 6pt;
+     
+  }

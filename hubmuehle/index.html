@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Wassertemperaturen</title>
+    <link rel="stylesheet" type="text/css" href="styles.css" media="all">
+    <link rel="manifest" href="manifest.json">
+  </head>
+  <body>
+      <div class="navbar">
+        <span class="navbarleft" id="navbarleft"><img src="icons/off-36.png"></span>
+        <span class="navbarmiddle" id="navbarlmiddle">Wassertemperaturen</span>
+        <span class="navbarright" id="navbarright"><img src="icons/reload-36.png"></span>
+
+      </div>
+      <div class='content'>
+        <h3>Wassertemperaturen im Schwimmbad Hubmühle <span id="datumzeit"></span></h3>
+        
+        <p class="textline"><span class="description">Mehrzweckbecken
+</span><span class="value" id = "temp2"></span><span class="unit">°C</span></p>
+        <p class="textline"><span class="description">Alubecken
+</span><span class="value" id = "temp1"></span><span class="unit">°C</span></p>
+        <p class="textline"><span class="description">Springerbecken
+</span><span class="value" id = "temp3"></span><span class="unit">°C</span></p>
+    </div>
+    
+
+  </body>
+  <script src="app.js"></script>
+</html>
