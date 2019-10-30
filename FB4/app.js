@@ -1,4 +1,4 @@
-
+9
 var offlineText = "Achtung! Sie sind offline. Die Daten können veraltet sein!";
 window.addEventListener("load", function(e) {
   if(!navigator.onLine) onlinestatus.innerHTML = offlineText;
