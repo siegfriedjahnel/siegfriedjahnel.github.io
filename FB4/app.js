@@ -18,9 +18,9 @@ const ligaCompetitions = [
 ];
 
 const cupCompetitions = [
-  {"name":"CL", "competitionId":"5", "seasonId":"2018"},
-  {"name":"EL", "competitionId":"6", "seasonId":"2018"},
-  {"name":"DFB", "competitionId":"231", "seasonId":"2018"}
+  {"name":"CL", "competitionId":"5", "seasonId":"2019"},
+  {"name":"EL", "competitionId":"6", "seasonId":"2019"},
+  {"name":"DFB", "competitionId":"231", "seasonId":"2019"}
 ];
 var season = "2018";
 var teamNames;

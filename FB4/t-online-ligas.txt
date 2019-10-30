@@ -1,0 +1,19 @@
+
+
+alle Spieltage: id=1
+https://dts.stroeerdp.de/rest/getdata/?id=1&competitionId=22&seasonId=2019
+
+aktueller Spieltag:id=6 nur Liga
+https://dts.stroeerdp.de/rest/getdata/?id=6&competitionId=22&seasonId=2019
+
+Tabelle:
+https://dts.stroeerdp.de/rest/getdata/?id=2&competitionId=22&seasonId=2019
+
+1. Bundesliga competitionId=22
+2. Bundesliga competitionId=87
+3. Bundesliga competitionId=374
+
+competitionId
+CL=5
+DFB=231
+EL=6
