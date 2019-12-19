@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Fussball-Ergebnisse</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  	<link rel="stylesheet" href="styles.css">
+  	<link rel="manifest" href="manifest.json">
+
+  	
+  	
+
+	<meta name="theme-color" content="#ffffff" />
+</head>
+<script type="text/javascript">
+		
+
+  		
+  	</script>
+<body>
+	<div data-role = "page" id = "page1">
+	<div data-role = "header">
+		
+		<table class = "header">
+			<tr>
+				<td><img src = "icons/icon-72.png" alt="Icon" height="36" width="36"></td>
+				<td>Fussball Saison 19/20<br>Ergebnisse und Tabellen</td>
+				<td><img id = "refreshButton" src = "icons/refresh-72.png" alt="refresh" height="36" width="36"></td>
+
+	 		</tr>
+	 	</table>
+	 
+	</div><!-- End of Header -->
+	
+	<nav>
+		<table class = "navTable">
+	  <tr class = "liga">
+		<td><button class = "competitionButtons" id = "bl1" name = "liga" value = "0">BL1</button></td>
+		<td><button class = "competitionButtons" id = "bl2" name = "liga" value = "1">BL2</button></td>
+		<td><button class = "competitionButtons" id = "bl3" name = "liga" value = "2">BL3</button></td>
+		<td><button class = "competitionButtons" id = "cl" name = "liga" value = "3">CL</button></td>
+		<td><button class = "competitionButtons" id = "el" name = "liga" value = "4">EL</button></td>
+		<td><button class = "competitionButtons" id = "dfb" name = "liga" value = "5">DFB</button></td>
+	  </tr>
+	</table>
+	<table>
+		<tr>
+			<td><button class = "cupButtons" id = "cl1718" name = "pokal" value = "0">??</button></td>
+			<td><button class = "cupButtons" id = "el1718" name = "pokal" value = "1">??</button></td>
+			<td><button class = "cupButtons" id = "dfbp" name = "pokal" value = "2">??</button></td>
+		</tr>
+	</table>
+	<table class = "navTable">
+	  <tr>
+		<td>
+			<button class = "navButtons" id = "minusButton">-</button>
+		</td>
+
+		<td colspan = 4 id = "matchdayContainer"></td>
+
+		<td>
+			<button class = "navButtons" id = "plusButton">+</button>
+		</td>
+	  </tr>
+	  </table>
+	</nav>
+	<div id = "onlinestatus"></div>
+
+	<div data-role = "content" id = "maincontent">
+		
+		<table class = "resultsTable"  >
+			<tbody id = "resultsTableBody">
+			<tbody>
+		</table>
+		<table class = "tableTable">
+			<thead id = "tableTableHead">
+				
+			</thead>
+			<tbody id = "tableTableBody">
+			<tbody>
+			
+		</table>
+	
+	</div><!-- End of content -->
+
+	<div data-role = "footer">
+	<table><tr><td>PWA Fussball :: Siegfried Jahnel :: http://sj-sam.de</td></tr></table>
+	</div><!-- End of footer -->
+
+</div><!-- End of page -->
+</body>
+<script type="text/javascript" src="app.js" ></script>
+</html>

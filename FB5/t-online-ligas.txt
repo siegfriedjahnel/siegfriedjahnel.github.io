@@ -1,0 +1,25 @@
+
+https://liveticker.stroeerdp.de/rest/widget/result/competition/0/matchday/  //alle Ergebnisse von heuete //1.9kB
+
+
+https://liveticker.stroeerdp.de/rest/widget/result/competition/22/matchday/ //alle Ergebnisse von 22 von heute // 2.2kB
+
+
+https://liveticker.stroeerdp.de/rest/livematches/desktop/  //alle spiele live
+
+
+https://liveticker.stroeerdp.de/rest/getdata?id=1&competitionId=22&seasonId=2019  //kompletter Spielplan von 22 //16.4 kB ???
+https://dts.stroeerdp.de/rest/getdata/?id=1&competitionId=22&seasonId=2019  //kompletter Spielplan von 22 // 169kB
+
+
+https://dts.stroeerdp.de/rest/getdata/?id=2&competitionId=22&seasonId=2019  //Tabelle von 22  //10kB
+https://dts.stroeerdp.de/rest/getdata/?id=6&competitionId=22&seasonId=2019  //Tabelle von 22 // 10kB
+
+
+BL1=22
+BL2=87
+BL3=374
+CL=5
+DFB=231
+EL=6
+
