@@ -1,0 +1,49 @@
+
+https://liveticker.stroeerdp.de/rest/widget/result/competition/0/matchday/  //alle Ergebnisse von heuete //1.9kB
+
+
+https://liveticker.stroeerdp.de/rest/widget/result/competition/22/matchday/ //alle Ergebnisse von 22 von heute // 2.2kB
+
+
+https://liveticker.stroeerdp.de/rest/livematches/desktop/  //alle spiele live
+
+
+https://liveticker.stroeerdp.de/rest/getdata?id=1&competitionId=22&seasonId=2019  //kompletter Spielplan von 22 //16.4 kB ???
+
+
+https://dts.stroeerdp.de/rest/getdata/?id=1&competitionId=22&seasonId=2019  //kompletter Spielplan von 22 // 169kB
+
+https://dts.stroeerdp.de/rest/getdata/?id=2&competitionId=22&seasonId=2019  //Tabelle von 22  //10kB
+https://dts.stroeerdp.de/rest/getdata/?id=6&competitionId=22&seasonId=2019  //Tabelle von 22 // 10kB
+
+
+BL1=22
+BL2=87
+BL3=374
+CL=5
+DFB=231
+EL=6
+
+
+BFV------------------------
+https://www.bfv.de/wettbewerbe/meisterschaften/0279RO38MO000001VS5489B3VUOI54T7-G //LLSO
+
+
+https://www.bfv.de/wettbewerbe/meisterschaften/027D48LQHK000009VS5489B3VUOI54T7-G  // RLB
+
+https://www.bfv.de/wettbewerbe/meisterschaften/027EC4JLNO00000CVS5489B4VTN21JC6-G // KLIS
+
+FUPA---------------------
+https://www.fupa.net/fupa/widget.php?val=73842&p=liga_klick&act=tabelle&url=www.fupa.net //tabelle LLSO
+https://www.fupa.net/fupa/widget.php?val=73842&p=liga_klick&act=spielplan&url=www.fupa.net Spielplan LLSO
+
+https://www.fupa.net/fupa/widget.php?val=74939&p=liga_klick&act=spielplan&url=www.fupa.net // spielplan KL 2 
+https://www.fupa.net/fupa/widget.php?val=74939&p=liga_klick&act=tabelle&url=www.fupa.net // Tabelle KL 2
+
+https://www.fupa.net/fupa/widget.php?val=73836&p=liga_klick&act=spielplan&url=www.fupa.net //spielplan RLB
+https://www.fupa.net/fupa/widget.php?val=73836&p=liga_klick&act=tabelle&url=www.fupa.net //Tabelle RLB
+
+https://www.fupa.net/fupa/widget.php?p=iframe_widget&typ=liga&value_id=74939&div_id=widget_74939&start=spielplan&header=0&navi=1&module_liga=0&start_liga=0&spieltag_liga=0 //KL2 Spielplan
+https://www.fupa.net/fupa/widget.php?p=iframe_widget&typ=team&value_id=696369&div_id=widget_5e047beca04c7&start=tabelle_mini&header=0&navi=0// KL 2 Tabelle
+
+

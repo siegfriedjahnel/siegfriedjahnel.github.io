@@ -8,9 +8,7 @@ body{
 	background-color: #ffd9b3;
 
 }
-main {
-  
-}
+
 button{
 	background-color: #ffffff;
 	border: 1px;
@@ -29,24 +27,43 @@ table{
 	margin-bottom: 5px;
 	background-color: #ffcc99;
 }
-.navTable td{
-    
-    
+picture{
+	display: none;
+}
+a{
+	pointer-events: none;
 }
 .resultsTable tr:nth-child(even) {
 	background-color: #ffe6cc;
 }
 
-.resultsTable{
-	
+.live{
+	color: red;
+	animation: blinker 1s linear infinite;
 	}
+.notlive{
+	color: #000000;
+}	
+@keyframes blinker {
+		50% { opacity: 0.5;}
+	  }
 
+
+.tableTable{
+	margin-top: 20pt;
+}
 .tableTable tr:nth-child(even){
 	background-color: #ffe6cc;
 	}
-.tableTable th{
-	//background-color: #dddddd;
-	}
+
+.liga_tabelle tr:nth-child(even){
+		background-color: #ffe6cc;
+		}
+
+.tabelle_spiele tr:nth-child(even){
+			background-color: #ffe6cc;
+			}
+
 .navButtons{
 		width: 3.0em;
 	}
