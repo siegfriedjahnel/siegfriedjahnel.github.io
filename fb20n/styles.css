@@ -1,0 +1,101 @@
+
+body{
+
+	font-family: 'RobotoRegular', 'Droid Sans', sans-serif;
+	font-size: small;
+	font-weight: 300;
+	margin: 5px 5px 5px 5px;
+	width: 95vw;
+	background-color: #ffd9b3;
+
+}
+.headRow{
+    font-weight: bold;
+}
+.red{
+    color:red;
+}
+.green{
+    color:green;
+}
+td.ten{
+    width: 10%;
+}
+td.twenty{
+    width: 20%;
+}
+td.fifty{
+    width: 50%;
+}
+td.sxty{
+    width:60%;
+}
+button{
+	background-color: #ffffff;
+	border: 1px;
+	border-radius: 8px;
+	border-style: solid;
+	border-color: #000000;
+	height: 3em;
+
+}
+table{
+	border-collapse: collapse;
+	width: 98%;
+	margin-left:auto; 
+    margin-right:auto;
+    margin-top: 5px;
+	margin-bottom: 5px;
+	background-color: #ffcc99;
+}
+picture{
+	display: none;
+}
+a{
+	pointer-events: none;
+}
+.tblResults tr:nth-child(even) {
+	background-color: #ffe6cc;
+}
+
+.live{
+	color: red;
+	animation: blinker 1s linear infinite;
+	}
+.notlive{
+	color: #000000;
+}	
+@keyframes blinker {
+		50% { opacity: 0.5;}
+	  }
+
+
+.tblStandings{
+	margin-top: 20pt;
+}
+.tblStandings tr:nth-child(even){
+	background-color: #ffe6cc;
+	}
+
+.liga_tabelle tr:nth-child(even){
+		background-color: #ffe6cc;
+		}
+
+.tabelle_spiele tr:nth-child(even){
+			background-color: #ffe6cc;
+			}
+
+.navButtons{
+		width: 3.0em;
+	}
+
+#onlinestatus{
+	color: red;
+	text-align: center;
+}
+td, th {
+  border: 1px solid #999;
+  padding: 0.5rem;
+  text-align: center;
+}
+

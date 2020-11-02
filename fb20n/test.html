@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>title</title>
+    <meta name="author" content="name">
+    <meta name="description" content="description here">
+    <meta name="keywords" content="keywords,here">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles.css" type="text/css">
+</head>
+<script type="text/javascript" src="today.js"></script>
+
+<body>
+
+    <div id="navigation"></div>
+    <div id="info"></div>
+    <div id="contentTop"></div>
+    <div id="contentBottom"></div>
+</body>
+<script>
+    
+    const url = `https://www.t-online.de/api/sdc/graphql/query`;
+    const extensionToday = `&extensions={"persistedQuery":{"version":1,"sha256Hash":"6d0844602164ce610ff064656c31c0529a9921d68e459ad612570244baf222b1"}}`;
+    const extensionMatchday = `&extensions={"persistedQuery":{"version":1,"sha256Hash":"e4a29441acab60e379a9f1dcdc67a7811a4ea82935c33b2d0b3e5d2e0616c0c1"}}`;
+    const extensionStandings = `&extensions={"persistedQuery":{"version":1,"sha256Hash":"b34f22dc370ea5f2dcf6b948b3432d9574c1b2005f387174b20ca1538f42d827"}}`;
+    const contentTop = document.getElementById("contentTop");
+    const contentBottom = document.getElementById("contentBottom");
+    getResults();
+    getStandings();
+
+    //-------------begin of function getStandings-------------------------------------------------------------------------------------------------------
+    async function getStandings() {
+        let variablesToday = `?operationName=DayOverview&variables={"eventFilter":{"day":"TODAY"},"dayFilter":"TODAY"}`;
+        let variablesMatchday=`?operationName=CurrentCompetition&variables={"competitionsFilter":{"idType":"MATCHDAY","id":"fmd-494012"}}`;
+        let variablesStandings = `?operationName=LiveTable&variables={"filter":{"idType":"COMPETITION","id":"sdc_fs-105"}}`;
+        //let route = url+variablesMatchday+extensionMatchday;
+        let route = url+variablesStandings+extensionStandings;
+        const response = await fetch(route);
+        const json = await response.json();
+        let standings = json.data.competitions[0].standings;
+        standings.forEach(element => {
+                let table = document.createElement("table");
+                let headRow = document.createElement("tr");
+                table.setAttribute('class', 'tblStandings');
+                headRow.setAttribute('class', 'headRow');
+                let colgroup = document.createElement("colgroup");
+                headRow.innerHTML = `<td class="ten">Pos</td><td class="fifty">Verein</td><td class="ten">Sp</td><td class="ten">Pkt</td><td class="ten">Diff</td>`;
+                if(element.group){
+                    let headLine =document.createElement("h4");
+                    headLine.innerHTML = `${element.group.name}`;
+                    contentBottom.appendChild(headLine);
+                }  
+                table.appendChild(headRow);
+                element.standingsCollection.forEach(row => {
+                    let tr = document.createElement("tr");
+                    tr.innerHTML = `<td>${row.position}</td><td>${row.team.name.full}</td><td >${row.played}</td><td>${row.points}</td><td class="">${row.difference}</td>`;
+                    table.appendChild(tr);
+                })
+                contentBottom.appendChild(table);
+            
+        });
+    }
+    //---------------------End of function------------------------------------------------------------------------------------------------------
+
+    //-------------begin of function getResults-------------------------------------------------------------------------------------------------------
+    async function getResults() {
+        let variablesToday = `?operationName=DayOverview&variables={"eventFilter":{"day":"TODAY"},"dayFilter":"TODAY"}`;
+        let variablesMatchday=`?operationName=CurrentCompetition&variables={"competitionsFilter":{"idType":"MATCHDAY","id":"fmd-494012"}}`;
+        let variablesStandings = `?operationName=LiveTable&variables={"filter":{"idType":"COMPETITION","id":"sdc_fs-95"}}`;
+        let route = url+variablesMatchday+extensionMatchday;
+        //let route = url+variablesToday+extensionToday;
+        const response = await fetch(route);
+        const json = await response.json();
+        let competitions = json.data.competitions;
+        competitions.forEach(element => {
+            if (element.__typename == "FootballCompetition") {
+                let table = document.createElement("table");
+                let headRow = document.createElement("tr");
+                table.setAttribute('class', 'tblResults');
+                headRow.setAttribute('class', 'headRow');
+                headRow.innerHTML = `<td class="twenty">Zeit<td class="fifty">${element.name}</td><td class="ten">Erg</td>`;
+                table.appendChild(headRow);
+                element.sportEvents.forEach(event => {
+                    let when = event.weekday.substring(0,2)+" ,"+ event.time +"<br>"+ event.date;
+                    let result = `<span class= "">-:-</span>`;
+                    if (event.latestScore && event.state == "LIVE") result = `<span class="red">${event.latestScore.home} : ${event.latestScore.home}`;
+                    if (event.latestScore && event.state == "FINISHED") result = `<span class="green">${event.latestScore.home} : ${event.latestScore.home}`;
+                    if (event.latestScore && event.state == "BREAK") result = `<span class="green">${event.latestScore.home} : ${event.latestScore.home}`;
+                    let row = document.createElement("tr");
+                    row.innerHTML = `<td>${when}</td><td>${event.homeTeam.name.full}<br>${event.awayTeam.name.full}</td><td>${result}</td>`;
+                    table.appendChild(row);
+                })
+                contentTop.appendChild(table);
+            }
+        });
+    }
+//---------------------End of function------------------------------------------------------------------------------------------------------
+</script>
+
+</html>
