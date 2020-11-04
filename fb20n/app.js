@@ -273,7 +273,7 @@ async function getResults(matchDayId) {
 }
 //---------------------End of function------------------------------------------------------------------------------------------------------
 
-//-------------begin of function getResults-------------------------------------------------------------------------------------------------------
+//-------------begin of function getToday-------------------------------------------------------------------------------------------------------
 async function getToday() {
   contentTop.innerHTML="";
   contentBottom.innerHTML="";
@@ -293,9 +293,9 @@ async function getToday() {
           element.sportEvents.forEach(event => {
               let when = event.weekday.substring(0,2)+" ,"+ event.time +"<br>"+ event.date;
               let result = `<span class= "">-:-</span>`;
-              if (event.latestScore && event.state == "LIVE") result = `<span class="live">${event.latestScore.home} : ${event.latestScore.home}`;
-              if (event.latestScore && event.state == "FINISHED") result = `<span class="green">${event.latestScore.home} : ${event.latestScore.home}`;
-              if (event.latestScore && event.state == "BREAK") result = `<span class="green">${event.latestScore.home} : ${event.latestScore.home}`;
+              if (event.latestScore && event.state == "LIVE") result = `<span class="live">${event.latestScore.home} : ${event.latestScore.away}`;
+              if (event.latestScore && event.state == "FINISHED") result = `<span class="green">${event.latestScore.home} : ${event.latestScore.away}`;
+              if (event.latestScore && event.state == "BREAK") result = `<span class="green">${event.latestScore.home} : ${event.latestScore.away}`;
               let row = document.createElement("tr");
               row.innerHTML = `<td>${when}</td><td>${event.homeTeam.name.full}<br>${event.awayTeam.name.full}</td><td>${result}</td>`;
               table.appendChild(row);
