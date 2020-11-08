@@ -1,13 +1,18 @@
 /* color-themes 
 
-colorPrimary : #F8F199  tables background
-colorPrimaryVariant : #FBF7C2  table-rows even
-color PrimaryVarian2: #F5EC70 body
-colorSecondary: #E0E0E0 buttons
-colorSecondary2 #9F9F9F borders
+colorPrimary : #ffab91  tables background
+colorPrimaryLight : #ffddc1  table-rows even
+color PrimaryDark: #c97b63 header, borders
+colorSecondary: #e0e0e0 buttons
+
 */
 
-
+:root{
+	--colorPrimary : #ffab91;
+	--colorPrimaryLight : #ffddc1;  
+	--colorPrimaryDark: #c97b63;
+	--colorSecondary: #e0e0e0;
+}
 
 body{
 
@@ -16,7 +21,7 @@ body{
 	font-weight: 500;
 	margin: 5px 5px 5px 5px;
 	/* background-color: #ffd9b3; */
-	background-color: #F5EC70;
+	background-color: #ffddc1;
 
 }
 .headRow{
@@ -24,7 +29,7 @@ body{
 }
 
 button{
-	background-color: #E0E0E0;
+	background-color: #e0e0e0;
 	border: 1px;
 	border-radius: 8px;
 	border-style: solid;
@@ -34,23 +39,30 @@ button{
 }
 table{
 	border-collapse: collapse;
+	/* border: none; */
 	width: 100%;
 	margin-left:auto; 
     margin-right:auto;
     margin-top: 5px;
 	margin-bottom: 5px;
-	background-color: #F8F199;
+	background-color: #ffab91;
 }
-
+table.navTable td {
+	border: none;
+}
+table.header{
+	background-color: #c97b63;
+}
 td, th {
-	border: 1px solid #9F9F9F;
+	/* border: none; */
+	border: 1px solid #c97b63;
 	padding: 0.5rem;
 	text-align: center;
   }
 
 
 .tblResults tr:nth-child(even) {
-	background-color: #FBF7C2;
+	background-color: #ffddc1;
 }
 
 
@@ -63,14 +75,16 @@ td, th {
 	margin-top: 20pt;
 }
 .tblStandings tr:nth-child(even){
-	background-color: #FBF7C2;
-	}
+	background-color: #ffddc1;
+}
 
 
 .navButtons{
 		width: 3.0em;
 	}
-
+.black{
+	color:black; 
+}
 .red{
 		color:red;
 	}
