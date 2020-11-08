@@ -10,9 +10,7 @@
 
 	<meta name="theme-color" content="#ffffff" />
 </head>
-<script type="text/javascript">
-   		
-  	</script>
+	  <script src="libs/hammer.js"></script>
 <body>
 	<div data-role = "page" id = "page1">
 	<div data-role = "header">
@@ -21,7 +19,8 @@
 			<tr>
 				<td><img src = "icons/icon-72.png" alt="Icon" height="36" width="36"></td>
 				<td>Fussball Saison 20/21<br>Ergebnisse und Tabellen</td>
-				<td><img id = "refreshButton" src = "icons/refresh-72.png" alt="refresh" height="36" width="36"></td>
+				<td><span id="onlineStatus"></span></td>
+				<!-- <td><img id = "refreshButton" src = "icons/offline-72.png" alt="refresh" height="36" width="36"></td> -->
 
 	 		</tr>
 	 	</table>
@@ -41,7 +40,6 @@
 	</table>
 	<table>
 		<tr>
-			<td><button class = "competitionButtons" id = "live" >live!</button></td>
 			<td><button class = "competitionButtons" id = "today">heute</button></td>
 			<td><button class = "competitionButtons" id = "llso">LLSO</button></td>
 			<td><button class = "competitionButtons" id = "kl">KL2</button></td>
@@ -76,5 +74,6 @@
 
 </div><!-- End of page -->
 </body>
+
 <script type="text/javascript" src="app.js" ></script>
 </html>

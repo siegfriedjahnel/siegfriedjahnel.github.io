@@ -1,7 +1,7 @@
 
   self.addEventListener('install', async function () { 
    const cache = await caches.open('static-v1'); 
-   cache.addAll(['styles.css', 'index.html']); 
+   cache.addAll(['styles.css', 'index.html', 'lib/hammer.js']); 
  }); 
  
  
