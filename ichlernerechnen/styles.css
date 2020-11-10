@@ -1,0 +1,58 @@
+body{
+    font-family: "Comic Sans MS";
+    max-width: 400px;
+    
+}
+.header{
+    background-color: aqua;
+}
+.content{
+    background-color: burlywood;
+}
+section{
+    margin-top: 16pt;
+}
+.cardCenter{
+    font-size: 18pt;
+    display: flex;
+    justify-content: center;
+}
+
+button{
+    margin: 4px;
+    border: solid 1px;
+    border-radius: 6px;
+
+}
+button.taste{
+    font-size: large;
+    min-width: 75px;
+    padding:  4px;
+    text-align: center;
+}
+
+button.operator{
+    min-width: 50px;
+    padding: 10pt;
+    text-align: center;;
+}
+.aufgabe{
+    background-color: aqua;
+    border: solid 1px;
+    text-align: center;
+}
+#term1Feld{
+    min-width: 50pt;
+}
+#term2Feld{
+    min-width: 50pt;
+}
+#operatorFeld{
+    min-width: 25pt;
+}
+#ergebnisFeld{
+    min-width: 75px;
+}
+#istgleichFeld{
+    min-width: 25px;
+}
