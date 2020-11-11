@@ -63,9 +63,9 @@ Array.prototype.filter.call(operatoren, function(element){
 function check(vorschlag){
     if(ergebnis==vorschlag){
         console.log("Richtig");
-        PlaySound("good");
+        //PlaySound("good");
     }else{
-        PlaySound("bad");
+        //PlaySound("bad");
         ergebnisFeld.innerHTML="";
     }
 
@@ -74,8 +74,4 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
   }
 
-  function PlaySound(soundObj) {
-    var sound = document.getElementById(soundObj);
-    console.log(sound);
-    sound.Play();
-  }
+  
