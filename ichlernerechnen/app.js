@@ -5,7 +5,8 @@ let ergebnisFeld = document.getElementById("ergebnisFeld");
 let operatorFeld = document.getElementById("operatorFeld");
 let term1Feld = document.getElementById("term1Feld");
 let term2Feld = document.getElementById("term2Feld");
-
+let istgleichFeld = document.getElementById("istgleichFeld");
+let emojiFeld = document.getElementById("emoji");
 let term1;
 let term2;
 let operator;
@@ -14,6 +15,7 @@ let max = 88;
 Array.prototype.filter.call(tasten, function(element){
     //console.log(element);
     element.addEventListener("click", function(){
+        emojiFeld.innerHTML=`<img src="images/question-trans.png">`;
         if(this.value =="clear"){
             ergebnisFeld.innerHTML="";
         }else if(this.value=="enter"){
@@ -30,8 +32,10 @@ Array.prototype.filter.call(tasten, function(element){
 Array.prototype.filter.call(operatoren, function(element){
     element.addEventListener("click", function(){
         ergebnisFeld.innerHTML="";
+        istgleichFeld.innerHTML="=";
         if(this.id=="+"){
             operatorFeld.innerHTML="+";
+            ergebnisFeld.innerHTML="";
             console.log("plusaufgabe");
             term1 = getRandomInt(max);
             term2 = getRandomInt(max);
@@ -63,10 +67,14 @@ Array.prototype.filter.call(operatoren, function(element){
 function check(vorschlag){
     if(ergebnis==vorschlag){
         console.log("Richtig");
+        emojiFeld.innerHTML=`<img src="images/happy-trans.png">`;
+
         //PlaySound("good");
     }else{
         //PlaySound("bad");
         ergebnisFeld.innerHTML="";
+        emojiFeld.innerHTML=`<img src="images/sad-trans.png">`;
+
     }
 
 }

@@ -1,4 +1,5 @@
 body{
+    background: coral;
     font-family: "Comic Sans MS";
     max-width: 400px;
     
@@ -10,49 +11,56 @@ body{
     background-color: burlywood;
 }
 section{
-    margin-top: 16pt;
+    margin-top: 10pt;
 }
 .cardCenter{
+    padding: 4pt;
     font-size: 18pt;
     display: flex;
     justify-content: center;
 }
 
 button{
-    margin: 4px;
+    margin: 2px;
     border: solid 1px;
     border-radius: 6px;
 
 }
 button.taste{
     font-size: large;
-    min-width: 75px;
+    min-width: 30px;
     padding:  4px;
     text-align: center;
 }
 
 button.operator{
-    min-width: 50px;
-    padding: 10pt;
+    min-width: 35px;
+    padding: 4pt;
     text-align: center;;
 }
-.aufgabe{
+#aufgabe{
     background-color: aqua;
-    border: solid 1px;
+    min-height: 35px;
+    min-width: 250px;
+    /* border: solid 1px; */
     text-align: center;
 }
 #term1Feld{
-    min-width: 50pt;
+    width: 50px;
 }
 #term2Feld{
-    min-width: 50pt;
+    width: 50px;
 }
 #operatorFeld{
-    min-width: 25pt;
+    width: 15px;
 }
 #ergebnisFeld{
-    min-width: 75px;
+    width: 50px;
 }
 #istgleichFeld{
-    min-width: 25px;
+    width: 15px;
+} 
+#emoji{
+    width: 100px;
+    height: 64px;
 }
