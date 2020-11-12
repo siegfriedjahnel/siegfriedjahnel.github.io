@@ -15,7 +15,6 @@ let max = 88;
 Array.prototype.filter.call(tasten, function(element){
     //console.log(element);
     element.addEventListener("click", function(){
-        emojiFeld.innerHTML=`<img src="images/question-trans.png">`;
         if(this.value =="clear"){
             ergebnisFeld.innerHTML="";
         }else if(this.value=="enter"){
@@ -31,6 +30,8 @@ Array.prototype.filter.call(tasten, function(element){
 
 Array.prototype.filter.call(operatoren, function(element){
     element.addEventListener("click", function(){
+        emojiFeld.innerHTML=`<img src="images/question-trans.png">`;
+
         ergebnisFeld.innerHTML="";
         istgleichFeld.innerHTML="=";
         if(this.id=="+"){
