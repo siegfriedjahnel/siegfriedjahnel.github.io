@@ -11,7 +11,7 @@ let term1;
 let term2;
 let operator;
 let ergebnis;
-let max = 88;
+let max = 20;
 Array.prototype.filter.call(tasten, function(element){
     //console.log(element);
     element.addEventListener("click", function(){
