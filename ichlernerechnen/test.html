@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Titel</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- <link href="style.css" rel="stylesheet"> -->
+</head>
+<style>
+.tastatur{
+    background-color: bisque;
+    font-size: 3em;
+    color: red;
+    margin: 4px;
+}
+</style>
+<body>
+<div id="input"><input type="text" id="vorschlagFeld"></div>
+<div id="output">
+    <span id="term1Feld"></span><span> + </span><span id="term2Feld"></span><sapn>=</sapn><span id="ergebnisFeld"></span>
+</div>
+<div><button id="start">START</button></div>
+
+<div class="tastatur">
+    <table>
+        <tr><td class="taste" value="1">&#10112;</td>
+            <td class="taste" value="2">&#10113;</td>
+            <td class="taste" value="3">&#10114;</td>
+            <td class="taste" value="4">&#10115;</td>
+            <td class="taste" value="5">&#10116;</td>
+            <td class="taste" value="6">&#10117;</td></tr>
+        <tr><td class="taste" value="7">&#10118;</td>
+            <td class="taste" value="8">&#10119;</td>
+            <td class="taste" value="9">&#10120;</td>
+            <td class="taste" value="0">&#127243;</td>
+            <td class="taste" value="check">&#10004;</td>
+            <td class="taste" value="clear">&#9114;</td>
+        </tr>
+    </table>
+</div>
+
+
+</body>
+<script>
+    let startButton=document.getElementById("start");
+    let term1Feld = document.getElementById("term1Feld");
+    let term2Feld = document.getElementById("term2Feld");
+    let ergebnisFeld = document.getElementById("ergebnisFeld");
+    let vorschlagFeld = document.getElementById("vorschlagFeld");
+    vorschlagFeld.addEventListener("keyup",function(k){
+        console.log(k.key);
+        draw(k.key,ergebnisFeld);
+    })
+    startButton.addEventListener("click", function(){
+        let term1 = Math.floor(Math.random()*100);
+        let term2 = Math.floor(Math.random()*100);
+       term1Feld.innerHTML="";
+       term2Feld.innerHTML="";
+       ergebnisFeld.innerHTML="";
+       vorschlagFeld.innerHTML="";
+        draw(term1,term1Feld);
+        draw(term2,term2Feld);
+
+    });
+function draw(term, target){
+    let term1Arr = term.toString().split('');
+    term1Arr.forEach(function(element){
+        target.innerHTML +=`<img src="images/f30/${element}.png">`;
+       
+    });
+    
+}
+//----- Tastatur belegen und eventhandler    ---------
+let tasten = document.getElementsByClassName("taste");
+Array.prototype.forEach.call(tasten, child => {
+    child.addEventListener("click", function(){
+        console.log(this.attributes.value.value); 
+        //do something useful
+
+
+    })
+});
+//-------------------------------------------------------
+
+
+
+
+</script>
+</html>
