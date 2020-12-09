@@ -1,0 +1,42 @@
+table{
+    border: 1px solid; 
+    border-collapse: collapse;
+    border-color: black;
+}
+
+.cell{
+    width:  44px;
+    height: 44px;
+    background-color: bisque;
+    border-style: solid 2px;
+    border-color: blue;
+    border-radius: 50%;
+    margin: 12px;
+
+}
+.stone{
+    width:  44px;
+    height: 44px;
+    border-style: solid 2px;
+    border-radius: 50%;
+    margin: 6px;
+    font-size: 18px;
+    text-align: center;
+
+}
+.red{
+    background-color: red;
+}
+.blue{
+    background-color: blue;
+}
+.mag{
+    display: flex;
+    flex-direction: row;
+}
+[draggable=true] {
+    cursor: move;
+  }
+  [draggable=false] {
+    cursor: not-allowed;
+  }

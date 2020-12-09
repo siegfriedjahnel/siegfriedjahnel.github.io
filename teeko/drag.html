@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Titel</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="style.css" rel="stylesheet">
+
+</head>
+<body>
+    <h1 class="draggable text">Hello, World!</h1>
+    <p class="text">Hello, World!</p>
+    <a href="#" class="text">Hello, World!</a>
+    <div class="text">Hello, World!</div>
+    
+    <h1 id= "dragItem"class="draggable text">Both tags work at the same time!</h1>
+
+
+    <div id= "dropzone" class="dropzone">
+
+    </div>
+</body>
+<script type="text/javascript" src="draggin.js"></script>
+<script>
+
+function handleDragStart(ev){
+    console.log(ev);
+}
+let dragItem = document.getElementById("dragItem");
+dragItem.addEventListener('dragstart', handleDragStart, false);
+
+
+</script>
+</html>
