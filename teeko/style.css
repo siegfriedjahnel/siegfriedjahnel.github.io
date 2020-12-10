@@ -5,8 +5,8 @@ table{
 }
 
 .cell{
-    width:  44px;
-    height: 44px;
+    width:  37px;
+    height: 37px;
     background-color: bisque;
     border-style: solid 2px;
     border-color: blue;
@@ -15,8 +15,8 @@ table{
 
 }
 .stone{
-    width:  44px;
-    height: 44px;
+    width:  36px;
+    height: 36px;
     border-style: solid 2px;
     border-radius: 50%;
     margin: 6px;
@@ -24,10 +24,10 @@ table{
     text-align: center;
 
 }
-.red{
+.color1{
     background-color: red;
 }
-.blue{
+.color2{
     background-color: blue;
 }
 .mag{
