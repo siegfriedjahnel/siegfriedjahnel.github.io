@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8">
+    <title>Memory</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+    <h3>Memory</h3>
+    <div id="mag1"></div>
+    <div id="playground"></div>
+    <div id="mag2"></div>
+</body>
+<script>
+    let imagesO = ['8986', '8987', '9748', '9749', '9917', '9918', '9924', '9925', '9940', '9962', '9970', '9971', '10060', '10062', '11088', '11093'];
+    let images = imagesO.concat(imagesO);
+    let numberOfOpenCards = 0;
+    let cards = [];
+    let playground = document.getElementById("playground");
+    let mag1 = document.getElementById("mag1");
+    let mag2 = document.getElementById("mag2");
+    for (i = 0; i < images.length; i++) {
+        let div = document.createElement('div');
+        div.setAttribute("id", images[i]);
+        div.addEventListener("click", flip)
+        div.setAttribute("class", "item")
+        div.innerHTML = "?";
+        playground.appendChild(div);
+    }
+
+    function flip() {
+            if (this.innerHTML == "?") {
+                if(numberOfOpenCards<2){
+                    this.innerHTML = `&#${this.id};`;
+                    cards[numberOfOpenCards]=this;
+                    numberOfOpenCards++;
+                    if(numberOfOpenCards>1) check();
+                }
+            } else {
+                this.innerHTML = "?";
+                cards[numberOfOpenCards]=0;
+                numberOfOpenCards--;
+            }
+        
+    }
+
+    function check(){
+        if(cards[0].id == cards[1].id){
+            console.log("match!")
+            mag1.innerHTML += `&#${cards[0].id};`;
+            cards[0].innerHTML="x";
+            cards[1].innerHTML="x";
+            numberOfOpenCards=0;
+
+
+        }
+    }
+</script>
+
+</html>

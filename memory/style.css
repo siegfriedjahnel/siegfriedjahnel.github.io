@@ -1,0 +1,12 @@
+.item{
+
+    margin:8px;
+    width: 24px;
+    height: 24px;
+    border: 1px solid saddlebrown;
+}
+#playground{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
