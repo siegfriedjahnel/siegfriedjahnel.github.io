@@ -6,6 +6,7 @@
     border: 1px solid saddlebrown;
 }
 #playground{
+    max-width: 360px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
