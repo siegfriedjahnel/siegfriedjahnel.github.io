@@ -11,6 +11,7 @@
 <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-database.js"></script>
 <script src="firebaseConfig.js"></script>
+
 <body>
     <h3>Memory-Game</h3>
     <div id="player1">Spieler 1: <span id="credits1"></span></div>
@@ -25,8 +26,8 @@
     let imagesO = ['8986', '8987', '9748', '9749', '9917', '9918', '9924', '9925', '9940', '9962', '9970', '9971', '10060', '10062', '11088', '11093'];
     let images = imagesO.concat(imagesO);
     let player;
-    let credits1=0;
-    let credits2=0;
+    let credits1 = 0;
+    let credits2 = 0;
     let numberOfOpenCards;
     let cards = [];
     let playground = document.getElementById("playground");
@@ -46,115 +47,115 @@
 
         let divId = this.id;
         numberOfOpenCards++;
-        firebase.database().ref('memory/nooc/').update({numberOfOpenCards });
-        firebase.database().ref('memory/selectedCard/').update({divId:divId });
-        if(numberOfOpenCards == 1) firebase.database().ref('memory/opencard1/').update({divId });
-        if(numberOfOpenCards == 2) firebase.database().ref('memory/opencard2/').update({divId });
-  }
+        firebase.database().ref('memory/nooc/').update({ numberOfOpenCards });
+        firebase.database().ref('memory/selectedCard/').update({ divId: divId });
+        if (numberOfOpenCards == 1) firebase.database().ref('memory/opencard1/').update({ divId });
+        if (numberOfOpenCards == 2) firebase.database().ref('memory/opencard2/').update({ divId });
+    }
 
-    function check(){
-        if(document.getElementById(cards[0]).getAttribute('code') == document.getElementById(cards[1]).getAttribute('code')){
+    function check() {
+        if (document.getElementById(cards[0]).getAttribute('code') == document.getElementById(cards[1]).getAttribute('code')) {
             console.log("match!")
             // move card to magazine DOM
             // make sympbols of cards ok
-            
-            firebase.database().ref('memory/selectedCard/').update({divId:"" });
-            document.getElementById(cards[0]).innerHTML="";
-            document.getElementById(cards[1]).innerHTML="";
+
+            firebase.database().ref('memory/selectedCard/').update({ divId: "" });
+            document.getElementById(cards[0]).innerHTML = "";
+            document.getElementById(cards[1]).innerHTML = "";
             // reset numberOfOpenCards
-            firebase.database().ref('memory/nooc/').update({numberOfOpenCards:0 });
+            firebase.database().ref('memory/nooc/').update({ numberOfOpenCards: 0 });
             // increase credit of player by 1
-            if(player == 1){
+            if (player == 1) {
                 credits1++;
                 document.getElementById("credits1").innerHTML = credits1;
             }
-            if(player == 2){
+            if (player == 2) {
                 credits2++;
                 document.getElementById("credits2").innerHTML = credits2;
             }
-        }else{
+        } else {
             console.log("wrong !")
             //reset cards
-            document.getElementById(cards[0]).innerHTML="?";
-            document.getElementById(cards[1]).innerHTML="?";
-            firebase.database().ref('memory/selectedCard/').update({divId:"" });
-            firebase.database().ref('memory/nooc/').update({numberOfOpenCards:0 });
+            document.getElementById(cards[0]).innerHTML = "?";
+            document.getElementById(cards[1]).innerHTML = "?";
+            firebase.database().ref('memory/selectedCard/').update({ divId: "" });
+            firebase.database().ref('memory/nooc/').update({ numberOfOpenCards: 0 });
             //change player
-            if(player==1){
-                firebase.database().ref('memory/player/').update({player:2 });
-            }else{
-                firebase.database().ref('memory/player/').update({player:1 });
+            if (player == 1) {
+                firebase.database().ref('memory/player/').update({ player: 2 });
+            } else {
+                firebase.database().ref('memory/player/').update({ player: 1 });
             }
-            
+
         }
     }
 
-    function waitAndCheck(){
-        window.setTimeout(function(){
+    function waitAndCheck() {
+        window.setTimeout(function () {
             check();
-        }, 5*1000);
+        }, 5 * 1000);
 
     }
 
 
-function displaySymbol(divId){
-    let card = document.getElementById(divId);
-    card.innerHTML = `&#${card.getAttribute('code')};`;
-    
-}
+    function displaySymbol(divId) {
+        let card = document.getElementById(divId);
+        card.innerHTML = `&#${card.getAttribute('code')};`;
 
-function colorPlayer(){
-    // update player at DB
-    // update DOM-div
-    if(player == 1){
-        document.getElementById("player1").style.backgroundColor  = "lime";
-        document.getElementById("player2").style.backgroundColor  = "red";
-    }else{
-        document.getElementById("player1").style.backgroundColor  = "red";
-        document.getElementById("player2").style.backgroundColor  = "lime";
     }
-}
-// gamecontroller-----------------------------------
-function readStatus(){
-    firebase.database().ref('memory').once('value')
-    .then(function(snapshot){
-        gameStatus = snapshot.val();
-        let divId=gameStatus.selectedCard.divId;
-        //updating local variables
-        if(gameStatus.opencard1.divId) cards[0]=gameStatus.opencard1.divId;
-        if(gameStatus.opencard1.divId) cards[1]=gameStatus.opencard2.divId;
-        numberOfOpenCards = gameStatus.nooc.numberOfOpenCards;
-        player = gameStatus.player.player;
-        colorPlayer();
-        //-----
-        //display Symbol in DOM
-        displaySymbol(divId);
-        //check
-        if(numberOfOpenCards == 2){
-            waitAndCheck();
+
+    function colorPlayer() {
+        // update player at DB
+        // update DOM-div
+        if (player == 1) {
+            document.getElementById("player1").style.backgroundColor = "lime";
+            document.getElementById("player2").style.backgroundColor = "red";
+        } else {
+            document.getElementById("player1").style.backgroundColor = "red";
+            document.getElementById("player2").style.backgroundColor = "lime";
         }
-        //decide
-        //change player
+    }
+    // gamecontroller-----------------------------------
+    function readStatus() {
+        firebase.database().ref('memory').once('value')
+            .then(function (snapshot) {
+                gameStatus = snapshot.val();
+                let divId = gameStatus.selectedCard.divId;
+                //updating local variables
+                if (gameStatus.opencard1.divId) cards[0] = gameStatus.opencard1.divId;
+                if (gameStatus.opencard1.divId) cards[1] = gameStatus.opencard2.divId;
+                numberOfOpenCards = gameStatus.nooc.numberOfOpenCards;
+                player = gameStatus.player.player;
+                colorPlayer();
+                //-----
+                //display Symbol in DOM
+                displaySymbol(divId);
+                //check
+                if (numberOfOpenCards == 2) {
+                    waitAndCheck();
+                }
+                //decide
+                //change player
 
-        
-    })
-}
-//-----------------------------------------------
-// eventlistener on database changes 
-let status = firebase.database().ref('memory');
-status.on('value',readStatus);
-//---------------------------------
 
-function initDB(){
-    firebase.database().ref('memory/selectedCard/').update({divId:"" });
-    firebase.database().ref('memory/opencard1/').update({divId:"" });
-    firebase.database().ref('memory/opencard2/').update({divId:"" });
-    firebase.database().ref('memory/nooc/').update({numberOfOpenCards:0 });
-    firebase.database().ref('memory/player/').update({player:1 });
-    firebase.database().ref('memory/credits1/').update({credits1:0 });
-    firebase.database().ref('memory/credits2/').update({credits2:0 });
-}
-initDB();
+            })
+    }
+    //-----------------------------------------------
+    // eventlistener on database changes 
+    let status = firebase.database().ref('memory');
+    status.on('value', readStatus);
+    //---------------------------------
+
+    function initDB() {
+        firebase.database().ref('memory/selectedCard/').update({ divId: "" });
+        firebase.database().ref('memory/opencard1/').update({ divId: "" });
+        firebase.database().ref('memory/opencard2/').update({ divId: "" });
+        firebase.database().ref('memory/nooc/').update({ numberOfOpenCards: 0 });
+        firebase.database().ref('memory/player/').update({ player: 1 });
+        firebase.database().ref('memory/credits1/').update({ credits1: 0 });
+        firebase.database().ref('memory/credits2/').update({ credits2: 0 });
+    }
+    initDB();
 </script>
 
 </html>
