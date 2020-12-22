@@ -60,7 +60,7 @@ function toggleColor(){
 
 function check(color){
   for(i=0; i<=24; i++ ){
-    if(cell[i]=="red"&&cell[i+1]==color&&cell[i+2]==color &&cell[i+3]==color){
+    if(cell[i]==color&&cell[i+1]==color&&cell[i+2]==color &&cell[i+3]==color){
       alert("winner");
     }
 
