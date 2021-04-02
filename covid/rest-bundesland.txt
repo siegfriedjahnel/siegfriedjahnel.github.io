@@ -1,0 +1,62 @@
+"Name":"Bayern","ObjectId":10
+
+
+attributes": {
+"AdmUnitId": 9,
+"Name": "Bayern",
+"ObjectId": 10
+}
+
+https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/rki_key_data_v/FeatureServer/0/query
+?f=json
+&where=AnzTodesfallNeu%3C%3E0
+&returnGeometry=false
+&spatialRel=esriSpatialRelIntersects
+&outFields=*
+&orderByFields=AdmUnitId%20asc
+&resultOffset=0
+&resultRecordCount=1
+&resultType=standard
+&cacheHint=true
+
+https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/rki_key_data_v/FeatureServer/0/query?
+f=json
+&where=1%3D1
+&returnGeometry=false
+&spatialRel=esriSpatialRelIntersects
+&outFields=*
+&orderByFields=AdmUnitId%20asc&resultOffset=0
+&resultRecordCount=1
+&resultType=standard
+&cacheHint=true
+
+
+-----------------
+Bundesland (BundeslandId%3D{id})
+Bayern=9
+Deutschland=1
+https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/rki_key_data_v/FeatureServer/0/query
+?f=json
+&where=(AnzFall7T%3C%3E0)%20AND%20(BundeslandId%3D9)
+&returnGeometry=false
+&spatialRel=esriSpatialRelIntersects
+&outFields=*
+&orderByFields=AdmUnitId%20asc&resultOffset=0&resultRecordCount=1&resultType=standard&cacheHint=true
+
+
+
+https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_COVID19/FeatureServer/0/query?f=json&where=(NeuerFall IN(1, -1)) AND (IdLandkreis='09183')
+&returnGeometry=false&spatialRel=esriSpatialRelIntersects&outFields=*&outStatistics=[{"statisticType":"sum","onStatisticField":"AnzahlFall","outStatisticFieldName":"value"}]&cacheHint=true
+==================
+besser:
+alle Landkreise:
+AÖ: BundeslandId=9) AND (AdmUnitId=9171)
+MÜ: BundeslandId=9) AND (AdmUnitId=9183)
+
+Bayern: BundeslandId=9) AND (AdmUnitId=9)
+Deutschland: BundeslandId=0) AND (AdmUnitId=0)
+
+https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/rki_key_data_v/FeatureServer/0/query?f=json&where=(BundeslandId=9) AND (AdmUnitId=9183)
+&returnGeometry=false&spatialRel=esriSpatialRelIntersects&outFields=*&orderByFields=AdmUnitId asc&resultOffset=0&resultRecordCount=1&resultType=standard&cacheHint=true
+
+
